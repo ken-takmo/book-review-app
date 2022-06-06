@@ -1,0 +1,133 @@
+/* ヘッダーデザイン index.html*/
+header{
+    background-color: rgb(45, 112, 106);
+    height: 8vw;
+    color: rgb(255, 255, 255);
+    
+}
+
+.baselink{
+    font-size: 2vw;
+    color: white;
+    float: right;
+    margin: 10px;
+}
+
+.app-name{
+    padding: auto;
+    margin-left: 1vw;
+    font-size: 3vw;
+    float: left;
+}
+
+
+
+/* フォーム部品デザイン */
+textarea {
+    display: inline-block;
+    width: 500px;
+}
+
+input[type="text"]{
+    width: 20vw;
+}
+
+input[type="email"]{
+    width: 20vw;
+}
+label{
+    font-size: 1.5vw;
+}
+
+a{  
+    color: rgb(45, 112, 106);
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover{
+    color: coral;
+}
+
+
+/* signupコンポーネントデザイン */
+
+.signin{
+    text-align: center;
+    border: 2px solid black;
+    background-color: rgb(248, 219, 155);
+    height: 40vw;
+    width: 40vw;
+    margin: 10vh auto;
+}
+
+
+.signin-title{
+    font-size: 3vw;
+}
+
+.signinform{
+    height: 50%;
+    margin: 10% auto 0 auto;
+}
+.signinform:focus{
+    outline: 0;
+    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;   
+}
+.signin-passwordform, .signin-button {
+    margin-top: 10%;
+}
+.to-signup{
+    margin: 0 auto;
+}
+
+/* サインアップコンポーネントデザイン */
+.signup{
+    text-align: center;
+    background-color: rgb(248, 219, 155);
+    border: 2px solid black;
+    height: 40vw;
+    width: 40vw;
+    margin: 10vh auto;
+}
+.signup-title{
+    font-size: 3vw;
+}
+.signup-form{
+    height: 50%;
+    margin: 10% auto 0 auto;
+}
+.signup-form:focus{
+    outline: 0;
+    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+.signup-email, .signup-password, .signup-button, .to-login{
+    margin-top: 10%;
+}
+
+/* ユーザー名コンポーネントデザイン */
+.username{
+    font-size: 20px;
+}
+
+/* 書類一覧コンポーネントデザイン */
+.headers{
+    height: 100px;
+}
+.book-links{
+    height: 50%;
+}
+.book-link{
+    font-size: 1.5vw;
+    margin-right: 10px;
+}
+.link{
+    float: left;
+    margin-left: 30px;
+}
+.userinfo{
+    float: right;
+    background-color:gold;
+    text-align: center;
+    border: 2px solid rgb(61, 59, 59);
+}
