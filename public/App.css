@@ -1,24 +1,38 @@
-/* ヘッダーデザイン index.html*/
+/* ヘッダーコンポーネント*/
 header{
     background-color: rgb(45, 112, 106);
     height: 8vw;
     color: rgb(255, 255, 255);
-    
+    position: relative;
+}
+.menus{
+    height: 100%;
+    width: 70%;
+    position: absolute;
+    font-size: 1vw;
+    /* display:flex;
+    justify-content: flex-end;
+    align-items: center; */
 }
 
-.baselink{
+.link{
+    color: white;
+}
+/* .baselink{
     font-size: 2vw;
     color: white;
     float: right;
     margin: 10px;
-}
+} */
 
 .app-name{
-    padding: auto;
+    height: 100%;
+    width: 30%;
     margin-left: 1vw;
     font-size: 3vw;
     float: left;
 }
+
 
 
 
@@ -44,6 +58,7 @@ a{
     text-decoration: none;
     display: inline-block;
 }
+
 a:hover{
     color: coral;
 }
@@ -111,23 +126,3 @@ a:hover{
 }
 
 /* 書類一覧コンポーネントデザイン */
-.headers{
-    height: 100px;
-}
-.book-links{
-    height: 50%;
-}
-.book-link{
-    font-size: 1.5vw;
-    margin-right: 10px;
-}
-.link{
-    float: left;
-    margin-left: 30px;
-}
-.userinfo{
-    float: right;
-    background-color:gold;
-    text-align: center;
-    border: 2px solid rgb(61, 59, 59);
-}

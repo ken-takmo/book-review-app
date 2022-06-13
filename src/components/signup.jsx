@@ -1,88 +1,41 @@
 import { useState,useEffect } from "react"
+import { UseFetch } from "./useFetch";
+import { useNavigate } from "react-router-dom";
 export function SignUp(){
 
-    const jwt = localStorage.getItem('jwt')
-    const [isLogin, setIsLogin] = useState(false);
-    const signinUrl = document.getElementById("login");
-    const signupUrl = document.getElementById("signup")
-    const booksUrl = document.getElementById("books");
+    const jwt = localStorage.getItem('jwt');
 
+    const navigate = useNavigate();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const {fetchdata,fetchRes} = UseFetch()
+ 
+    // const signinUrl = document.getElementById("login");
+    // const signupUrl = document.getElementById("signup")
+    // const booksUrl = document.getElementById("books");
     
-    useEffect(() => {
-        if(!jwt || jwt === "") {
-            setIsLogin(false);
-        }else{
-            setIsLogin(true);
-        }
-    },[])
-
-    async function PostData(){
-
-        const name = document.getElementById("name").value 
-        const email = document.getElementById("email").value 
-        const password = document.getElementById("password").value 
-        
-        const body = {
-            name: name,
-            email: email,
-            password: password
-        }
-
-        const res = await fetch('https://api-for-missions-and-railways.herokuapp.com/users', {
-            method:"POST",
-            headers: {
-                'Content-Type':'application/json',
-            },
-            body: JSON.stringify(body)
-        })
-
+    const body = {
+        name: name,
+        email: email,
+        password: password
+    }
+    const onSignupClick = async() => {
+        const res = await fetchdata("/users", "POST", undefined, body)
         const result = await res.json()
-        
-        
-        const inputError = () => {
-            if(name === "" || !name){
-                alert("ユーザーネームを入力してください");
-            }else if (email === "" || !email){
-                alert("メールアドレスを入力してください");
-            }else if (password === "" || !password) {
-                alert("パスワードを入力してください");
-            }else{
-                alert("何らかのエラーが発生しました")
-            }
+        const successAction = () => {
+            alert("登録されました");
+            navigate("/signin");
         }
-        
-        const handleError = async (result) => {
-
-            switch (result.ErrorCode) {
-                case 400:
-                    inputError();
-                    break;
-                case 403:
-                    alert(result.ErrorMessageJP);
-                    break;
-                case 500:
-                    alert(result.ErrorMessageJP);
-                    break;
-                default:
-                    alert("登録");
-                    break;
-            }
-        }
-
-        handleError(result);
+        fetchRes(res,successAction,result);
     }
 
-    useEffect(() => {
-        const urlChange = () => {
-            if(isLogin){
-                signinUrl.setAttribute('href',booksUrl);
-                signupUrl.setAttribute('href',booksUrl);
-            }else{
-                booksUrl.setAttribute('href',signinUrl);
-            }
-        }
-        urlChange()
-    },[isLogin])
+    // useEffect(() => {
+    //     if(jwt){
+    //         signinUrl.setAttribute('href',booksUrl);
+    //         signupUrl.setAttribute('href',booksUrl);
+    //     }
+    // },[jwt])
     
     return(
         <div>
@@ -91,18 +44,20 @@ export function SignUp(){
                 <div className="signup-form">
                     <div className="signup-name">
                         <label htmlFor='name'>ユーザーネーム</label>
-                        <input id='name' type="text" placeholder="ユーザーネームを入力"/>
+                        <input id='name' type="text" placeholder="ユーザーネームを入力" onChange={(e) => {setName(e.target.value)}}/>
                     </div>
                     <div className="signup-email">
                         <label htmlFor='email'>メールアドレス</label>
-                        <input id='email' type="email" placeholder="メールアドレスを入力"/>
+                        <input id='email' type="email" placeholder="メールアドレスを入力" onChange={(e) => {setEmail(e.target.value)}} />
                     </div>
                     <div className="signup-password">
                         <label htmlFor='password'>パスワード</label>
-                        <input id='password' type="text" placeholder="パスワードを入力"/>
+                        <input id='password' type="text" placeholder="パスワードを入力" onChange={(e) => {setPassword(e.target.value)}} />
                     </div>
-                    <button className="signup-button" type="submit" onClick={PostData}>登録</button>
+                    <button className="signup-button" type="submit" onClick={onSignupClick}>登録</button>
                 </div>
+                <br />
+                <br />
                 <a href="http://localhost:3000/signin" className="to-login">ログイン画面へ</a>
             </div>
         </div>

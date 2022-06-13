@@ -8,20 +8,22 @@ import { Newbook } from "./components/newbook";
 import { Detail } from "./components/detail";
 import { Edit } from "./components/edit";
 import { Publicbooks } from "./components/publicbooks";
+import { Header } from "./components/header";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+          <Header/>
         <Routes>
-          <Route path="/" element={<Books />}/>
+          <Route path="/" element={<Publicbooks/>}/>
+          <Route path="/books" element={<Books />}/>
           <Route path="/detail/:id" element={<Detail />}/>
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/signup" element={<SignUp/>} />
           <Route path="/signin" element={<Signin/>}/>
           <Route path="/profile" element={<Profile />} />
           <Route path="/new" element={<Newbook />}/>
-          <Route path="/sample" element={<Publicbooks/>}/>
         </Routes>      
       </BrowserRouter>
     </div>

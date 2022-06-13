@@ -1,45 +1,29 @@
 import { useState,} from "react"
 import { useNavigate,useLocation } from "react-router-dom";
+import { UseFetch} from "./useFetch";
 export const Profile = () => {
     
     const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
-
+    const {fetchdata,fetchRes} = UseFetch();
     const location = useLocation();
-    const userName = location.state.name;
-
-    const [name, setName] = useState(userName);
+    const prevName = location.state.name;
+    const [NewName, setNewName] = useState(prevName);
     
     const newProfile = async() => {
-        
-        const newUserName = name;
 
         const body = {
-            name:newUserName
+            name:NewName
         }
-        const res = await fetch('https://api-for-missions-and-railways.herokuapp.com/users',{
-            method: "PUT",
-            headers: {
-                "Authorization": `Bearer ${jwt}`,
-            },
-            body: JSON.stringify(body),
-        });
+        const res = await fetchdata('/users',"PUT",{"Authorization": `Bearer ${jwt}`},body);
         const result = await res.json();
-        console.log(result);
 
-        switch(res.status){
-            case 200:
-                alert(`ユーザー名が${Object.values(result)}に変更されました`);
-                navigate(-1);
-                break;
-            case 400:
-            case 403:
-            case 500:
-                alert(result.ErrorMessageJP);
-                break;
-            default:
-                break;
+        const successAction = () => {
+            alert(`ユーザー名が${Object.values(result)}に変更されました`);
+            navigate("/books");
         }
+
+        fetchRes(res,successAction,result)
     }
 
 
@@ -51,12 +35,12 @@ export const Profile = () => {
             </div>
             <div>
                 <label htmlFor="newName">新しいユーザー名</label>
-                <input type="text" id="newName" value={name} onChange={e => setName(e.target.value)}/>
+                <input type="text" id="newName" value={NewName} onChange={e => setNewName(e.target.value)}/>
                 <button onClick={newProfile}>変更</button>
             </div>
             <br />
             <br />
-                <button onClick={() => {navigate(-1)}}>戻る</button>
+                <button onClick={() => {navigate("/books")}}>戻る</button>
         </div>
     )
 }

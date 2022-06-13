@@ -1,32 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useUser } from "./useUser";
 
 export const Detail = () => {
 
-    const [details, setDetails] = useState({});
     const params = useParams({});
     const navigate = useNavigate();
 
+    const jwt = localStorage.getItem("jwt");
+
+    const details = useUser(`/books/${Object.values(params)}`,{"Authorization": `Bearer ${jwt}`});
     
-    useEffect(() => {
-        async function getbooks() {
-            
-            const jwt = localStorage.getItem("jwt");
-            
-            
-    
-            const res = await fetch(`https://api-for-missions-and-railways.herokuapp.com/books/${Object.values(params)}`,{
-                method:"GET",
-                headers:{
-                    "Authorization": `Bearer ${jwt}`,
-                }
-            });
-            const result = await res.json();
-            setDetails(result);                   
-        }
-        getbooks();
-    },[])
-    console.log(details.url);
     
     return(
         <div>
@@ -41,7 +25,7 @@ export const Detail = () => {
                         <li>ID:{details.id}</li>
                         {details.isMine &&<li>あなたの投稿です</li>}
                     </ul>
-                <button onClick={()=> {navigate(-1)}}>戻る</button>
+                <button onClick={()=> {navigate("/books")}}>戻る</button>
             </div>
         </div>
     )
