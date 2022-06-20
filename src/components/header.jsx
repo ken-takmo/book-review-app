@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useLocation,useNavigate } from "react-router-dom";
 import { UseFetch } from "./useFetch";
+
 export const Header = () => {
+
     const navigate = useNavigate();
     const jwt = localStorage.getItem("jwt");
     const {fetchdata} = UseFetch();
     const [userResult, setUserResult] = useState({});
+
     useEffect(() => {
         const LoginHeader = async() => {
             if(jwt){
@@ -15,34 +18,36 @@ export const Header = () => {
             }
         }
         LoginHeader();
-    },[jwt])
+    },[jwt]);
 
     const signout = () => {
         localStorage.removeItem("jwt");
         alert("ログアウトしました");
-        navigate("/signin",{replace: true})
+        navigate("/signin")
     }
     return(
         <header>
             {jwt ?
-            <div className="container">
+            <div className="header-container">
                 <h1 className="app-name">書籍レビューアプリ</h1>
-                <div className="menus">
+                <div className="login-menus">
                     <div className="userinfo">
-                        <p>ユーザーネーム: {Object.values(userResult)}</p>
-                        <button id="signout-buttn" onClick={signout}>ログアウト</button>
+                        <p className="username">
+                            ユーザーネーム: {Object.values(userResult)}
+                            <span className="material-symbols-outlined" onClick={signout}>logout</span>
+                        </p>
                     </div>
-                    <nav className="book-links">
+                    <nav className="links">
                         <Link to="/profile" state={{name:Object.values(userResult)}} className="link">ユーザー情報編集ページへ</Link>
                         <Link to="/new" className="link">レビュー投稿ページへ</Link>
                         <Link to="/books" className="link" >書籍一覧</Link>
                     </nav>
                 </div>
             </div>:
-            <div className="container">
+            <div className="header-container">
                 <h1 className="app-name">書籍レビューアプリ</h1>
                 <div className="menus">
-                    <nav id="header-list">
+                    <nav className="links">
                         <Link to="/signin"  className="link">ログイン</Link>
                         <Link to="/signup"  className="link">登録</Link>
                         <Link to="/"  className="link">書籍一覧</Link>

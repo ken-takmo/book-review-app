@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 import { UseFetch } from "./useFetch";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export function SignUp(){
 
     const jwt = localStorage.getItem('jwt');
@@ -38,29 +38,27 @@ export function SignUp(){
     // },[jwt])
     
     return(
-        <div>
-            <div className="signup">
-                <h1 className="signup-title">ユーザー作成</h1>
-                <div className="signup-form">
+        <main className="signup">
+            <div className="signup-content">
+                <h1 className="signup-title">ユーザー登録</h1>
+                <div className="signup-forms">
                     <div className="signup-name">
                         <label htmlFor='name'>ユーザーネーム</label>
-                        <input id='name' type="text" placeholder="ユーザーネームを入力" onChange={(e) => {setName(e.target.value)}}/>
+                        <input type="text" placeholder="ユーザーネームを入力" onChange={(e) => {setName(e.target.value)}}/>
                     </div>
                     <div className="signup-email">
                         <label htmlFor='email'>メールアドレス</label>
-                        <input id='email' type="email" placeholder="メールアドレスを入力" onChange={(e) => {setEmail(e.target.value)}} />
+                        <input type="email" placeholder="メールアドレスを入力" onChange={(e) => {setEmail(e.target.value)}} />
                     </div>
                     <div className="signup-password">
                         <label htmlFor='password'>パスワード</label>
-                        <input id='password' type="text" placeholder="パスワードを入力" onChange={(e) => {setPassword(e.target.value)}} />
+                        <input type="text" placeholder="パスワードを入力" onChange={(e) => {setPassword(e.target.value)}} />
                     </div>
                     <button className="signup-button" type="submit" onClick={onSignupClick}>登録</button>
                 </div>
-                <br />
-                <br />
-                <a href="http://localhost:3000/signin" className="to-login">ログイン画面へ</a>
+                <Link to="/signin" className="to-signin">ログイン画面へ</Link>
             </div>
-        </div>
+        </main>
     )
     
 }

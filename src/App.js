@@ -9,6 +9,7 @@ import { Detail } from "./components/detail";
 import { Edit } from "./components/edit";
 import { Publicbooks } from "./components/publicbooks";
 import { Header } from "./components/header";
+import { Sample } from "./components/sample";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/signin" element={<Signin/>}/>
           <Route path="/profile" element={<Profile />} />
           <Route path="/new" element={<Newbook />}/>
+          <Route path="/sample" element={<Sample/>} />
         </Routes>      
       </BrowserRouter>
     </div>

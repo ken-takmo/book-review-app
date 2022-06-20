@@ -7,6 +7,7 @@ export const UseFetch = () => {
                 headers: headers,
                 body: JSON.stringify(body)
             })
+        console.log("fetching");
         return res;
     }
 
@@ -17,7 +18,7 @@ export const UseFetch = () => {
                 break;
             case 403:
             case 400:
-                alert(result.ErrorMessageJP)
+                alert("項目を全て入力してください")
                 break;
             case 500:
                 alert(result.ErrorMessageJP)

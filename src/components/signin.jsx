@@ -1,3 +1,4 @@
+import { replace } from "formik";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
 import { UseFetch } from "./useFetch";
@@ -6,7 +7,6 @@ export function Signin(){
     const navigate = useNavigate();
     const [emailText,setEmailText] = useState("");
     const [passwordText, setPasswordText] = useState("");
-    const jwt = localStorage.getItem('jwt');
     const {fetchdata,fetchRes} = UseFetch();
     
     const body = {
@@ -27,31 +27,18 @@ export function Signin(){
         fetchRes(res,successAction,result);
     }
     
-    // const signinUrl = document.getElementById("login");
-    // const booksUrl = document.getElementById("books");
-
-    // useEffect(() => {
-    //     if(jwt){
-    //         booksUrl.setAttribute("href","http://localhost:3000/books");
-    //     }
-    // },[jwt]);
-    
-    
-    
-    
-    
     return(
-        <main>
-            <div className="signin">
+        <main className="signin">
+            <div className="signin-content">
                 <h1 className="signin-title">ログイン</h1>
-                <div className="signinform">
+                <div className="signin-forms">
                     <div className="signin-emailform">
                         <label htmlFor="email">メールアドレス</label>
-                        <input id="email" type="email" placeholder="メールアドレスを入力" onChange={(e) => setEmailText(e.target.value)}/>
+                        <input type="email" placeholder="メールアドレスを入力" onChange={(e) => setEmailText(e.target.value)}/>
                     </div>
                     <div className="signin-passwordform">
                         <label htmlFor="password">パスワード</label>
-                        <input id="password" type="text"placeholder="パスワードを入力" onChange={(e) => setPasswordText(e.target.value)}/>
+                        <input className="" type="text"placeholder="パスワードを入力" onChange={(e) => setPasswordText(e.target.value)}/>
                     </div>
                     <button onClick={onSigninClick} className="signin-button">ログイン</button>
                 </div>

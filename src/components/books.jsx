@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { useUser } from "./useUser";
 export function Books (){
@@ -6,48 +6,61 @@ export function Books (){
     const navigate = useNavigate();
 
     const [offset, setOffset] = useState("")
-    const [number, setNumber] = useState("")
+    const [number, setNumber] = useState(0)
 
     
     const results = useUser(`/books${offset}`,{"Authorization": `Bearer ${jwt}`});
 
-    const onSelectBooksChange = () => {
-        setOffset(number);
-        navigate(`${number}`)
+
+    const onNextBooksChange = () => {
+        if(number === 0) {
+            setNumber(9);
+        }else{
+            setNumber(number + 10);
+        }
     }
 
+    useEffect(() => {
+        setOffset(`?offset=${number}`)
+        navigate(`?offset=${number}`);
+    },[number])
+
+    const onPrevBooksChange = () => {
+        if(number === 9) {
+            setNumber(0);
+        }else if(number === 0){
+            alert("最新のレビューです")
+        }else{
+            setNumber(number - 10);
+        }
+    }
     
     return(
-        <div>
-            <main className="books">
-                {jwt ? 
-                <div className="search-books">
-                    <label htmlFor="search" >何件目から表示しますか</label>
-                    <input type="text" id="search" placeholder="半角数字を入力" onChange={(e) => setNumber("?offset=" + e.target.value)}/>
-                    <button onClick={onSelectBooksChange}>検索</button>
-                </div>:
-                <div>
-                    <Link to="/signin">ログインしてください</Link>
-                </div>
-                }
+        <main className="books">
+            <h1>書籍レビュー一覧</h1>            
+            {jwt ? 
+            <div>
                 <div className="reviews">
-                {Object.values(results).map((result) => (
+                    {Object.values(results).map((result) => (
                     <ul key={result.id}>
                         <li >タイトル: {result.title}</li>
-                        <li >あらすじ: {result.detail}</li>
+                        <li >書籍内容: {result.detail}</li>
                         <li >レビュー: {result.review}</li>
-                        <li >投稿者: {result.reviewer}</li>
-                        <li id="url">URL: <a href={result.url} target="_blank">{result.url}</a></li>
-                        <li >ID: {result.id}</li>
+                        <li >URL: <a href={result.url} target="_blank">{result.title}を詳しく</a></li>
                         <button onClick={() => {navigate(`/detail/${result.id}`)}}>詳細</button>
                         {result.isMine &&<button onClick={() => {navigate(`/edit/${result.id}`,{state:result})}}>編集</button>}
                     </ul>
-                ))}
+                    ))}
                 </div>
-            </main>
-
-        </div>
+                <div className="next-books">
+                    <button onClick={onPrevBooksChange}>前の10件を表示</button>
+                    <button onClick={onNextBooksChange}>次の10件を表示</button>
+                </div>
+            </div>:
+            <div>
+                <Link to="/signin">ログインしてください</Link>
+            </div>
+            }
+        </main>
     )
-    
-    
 }

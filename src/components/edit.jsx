@@ -1,3 +1,4 @@
+import { replace } from "formik";
 import { useState } from "react";
 import { useNavigate, useParams , useLocation} from "react-router-dom";
 import { UseFetch } from "./useFetch";
@@ -47,10 +48,8 @@ export const Edit = () => {
     }
 
     return(
-        <div>
-            <div>
-                <h1>書籍レビュー編集ページ</h1>
-            </div>
+        <main>
+            <h1>書籍レビュー編集ページ</h1>
             <div>
                 <div>
                     <label htmlFor="title">タイトル</label>
@@ -61,7 +60,7 @@ export const Edit = () => {
                     <input type="text" id="url" value={urlText} onChange={(e) => setUrlText(e.target.value)}/>
                 </div>
                 <div>
-                    <label htmlFor="detail">あらすじ</label>
+                    <label htmlFor="detail">書籍内容</label>
                     <textarea type="text" id="detail" value={detailText} onChange={(e) => setDetailText(e.target.value)}/>
                 </div>
                 <div>
@@ -80,6 +79,6 @@ export const Edit = () => {
             <div>
                 <button onClick={()=> {navigate("/books")}}>戻る</button>
             </div>
-        </div>
+        </main>
     )
 }

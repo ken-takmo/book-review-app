@@ -34,34 +34,30 @@ export const Newbook = () => {
     }
 
     return(
-        <div>
-            <div>
-                <h1>書籍レビュー投稿ページ</h1>
-            </div>
-            <div>
-                <h2>タイトル、URL、あらすじ、レビューを書いてください。</h2>
+        <main className="newbook">
+            <h1 className="newbook-title">書籍レビュー投稿</h1>
+            <div className="newbook-content">
                 <div>
                     <label htmlFor="title">タイトル</label>
-                    <input type="text" id="title" onChange={e => setTitle(e.target.value)}/>
+                    <input type="text" id="title" onChange={e => setTitle(e.target.value)} placeholder="タイトル"/>
                 </div>
                 <div>
                     <label htmlFor="url">URL</label>
-                    <input type="text" id="url" onChange={e => setUrl(e.target.value)}/>
+                    <input type="text" id="url" onChange={e => setUrl(e.target.value)} placeholder="URL"/>
                 </div>
                 <div>
-                    <label htmlFor="detail">あらすじ</label>
-                    <textarea id="detail" rows="5" onChange={e => setDetail(e.target.value)}/>
+                    <label htmlFor="detail">書籍内容</label>
+                    <textarea id="detail" rows="5" onChange={e => setDetail(e.target.value)} placeholder="本の内容を書いてください"/>
                 </div>
                 <div>
                     <label htmlFor="review">レビュー</label>
-                    <textarea rows="5" id="review" onChange={e => setReview(e.target.value)}/>
-                </div>
-                <div>
-                    <button onClick={postBook}>作成</button>
+                    <textarea rows="5" id="review" onChange={e => setReview(e.target.value)} placeholder="本のレビューを書いてください"/>
                 </div>
             </div>
-            <br />
-            <button onClick={() => {navigate("/books")}}>戻る</button>
-        </div>
+            <div className="newbook-buttons">
+                <button className="post-book-button" onClick={postBook}>投稿</button>
+                <button className="prev-button" onClick={() => {navigate("/books")}}>戻る</button>
+            </div>
+        </main>
     )
 }

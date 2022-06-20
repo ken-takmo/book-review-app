@@ -1,39 +1,86 @@
-/* ヘッダーコンポーネント*/
+html{
+    box-sizing: border-box;
+}
+*{
+    box-sizing: inherit;
+}
+html, body{
+    height: 100%;
+}
 header{
     background-color: rgb(45, 112, 106);
-    height: 8vw;
+    height: 15%;
     color: rgb(255, 255, 255);
-    position: relative;
 }
-.menus{
+main{
+    height: 85%;
+}
+#root{
     height: 100%;
-    width: 70%;
-    position: absolute;
-    font-size: 1vw;
-    /* display:flex;
-    justify-content: flex-end;
-    align-items: center; */
+}
+.App{
+    height: 100%;
+}
+
+h1{ 
+    margin: 0;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+  cursor: pointer;
+}
+
+/* ヘッダーコンポーネント*/
+/* 共通部分 */
+
+.header-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.app-name{
+    font-size: 3vw;
+    padding-left: 10px;
+}
+
+
+.links{
+    padding-bottom: 10px;
 }
 
 .link{
     color: white;
-}
-/* .baselink{
+    margin-right: 10px;
     font-size: 2vw;
-    color: white;
-    float: right;
-    margin: 10px;
-} */
-
-.app-name{
-    height: 100%;
-    width: 30%;
-    margin-left: 1vw;
-    font-size: 3vw;
-    float: left;
 }
-
-
+/* 未ログイン時のヘッダー */
+.menus{
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+/* ログイン時のヘッダー */
+.login-menus{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.username{
+    font-size: 2vw;
+    margin: 0;
+}
+.signout-button{
+    margin: 0 15px;
+}
 
 
 /* フォーム部品デザイン */
@@ -42,87 +89,309 @@ textarea {
     width: 500px;
 }
 
-input[type="text"]{
+input{
+    width: 500px;
+}
+.signin-forms input,.signup-forms input{
     width: 20vw;
 }
 
-input[type="email"]{
-    width: 20vw;
-}
 label{
     font-size: 1.5vw;
+    display: block;
 }
-
 a{  
     color: rgb(45, 112, 106);
     text-decoration: none;
     display: inline-block;
 }
-
+button{
+    cursor: pointer;
+}
 a:hover{
     color: coral;
 }
 
 
-/* signupコンポーネントデザイン */
+/* signin,signupコンポーネントデザイン */
+.signin,.signup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.signin{
-    text-align: center;
+.signin-content,.signup-content{
     border: 2px solid black;
     background-color: rgb(248, 219, 155);
     height: 40vw;
     width: 40vw;
-    margin: 10vh auto;
-}
-
-
-.signin-title{
-    font-size: 3vw;
-}
-
-.signinform{
-    height: 50%;
-    margin: 10% auto 0 auto;
-}
-.signinform:focus{
-    outline: 0;
-    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;   
-}
-.signin-passwordform, .signin-button {
-    margin-top: 10%;
-}
-.to-signup{
-    margin: 0 auto;
-}
-
-/* サインアップコンポーネントデザイン */
-.signup{
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    background-color: rgb(248, 219, 155);
-    border: 2px solid black;
-    height: 40vw;
-    width: 40vw;
-    margin: 10vh auto;
-}
-.signup-title{
-    font-size: 3vw;
-}
-.signup-form{
-    height: 50%;
-    margin: 10% auto 0 auto;
-}
-.signup-form:focus{
-    outline: 0;
-    box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+    justify-content: space-around;
 }
 
-.signup-email, .signup-password, .signup-button, .to-login{
+.signin-title,.signup-title{
+    font-size: 3vw;
+}
+
+.signin-passwordform, .signin-button,
+.signup-email,.signup-password, .signup-button, .to-login{
     margin-top: 10%;
 }
 
 /* ユーザー名コンポーネントデザイン */
-.username{
-    font-size: 20px;
-}
 
 /* 書類一覧コンポーネントデザイン */
+.reviews{
+    word-break: break-word;
+}
+.review{
+    border: 1px solid black;
+}
+
+/* 詳細コンポーネント */
+.detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.detail-content{
+    height: 80%;
+    width: 60%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.detail-header{
+    flex: 2;
+    display: flex;
+}
+.detail-title{
+    margin: auto 0 auto 5px;
+}
+
+
+.detail-main{
+    flex: 6;
+}
+
+.detail-main-button{
+    display: flex;
+    height: 10%;
+}
+
+.detail-button{
+    flex: 1;
+    background-color: #7cd885;
+}
+.review-button{
+    flex: 1;
+    background-color: rgb(139, 233, 230);
+}
+
+.is-detail{
+    height: 90%;
+}
+
+.is-review{
+    height: 90%;
+}
+
+.detail-footer{
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+}
+.author{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links{
+    margin-right: 30px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.detail a {
+    color: rgb(45, 112, 106);
+}
+.detail p {
+    margin: 5px;
+}
+.detail h2{
+    margin: 0;
+    text-align: center;
+}
+.detail h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.detail hr {
+    margin: 0;
+}
+/* .review-header
+.review-content
+.author */
+
+/* ユーザー情報コンポーネント */
+/* .profile{
+    display: flex;
+    align-items: center;
+} */
+.profile-title{
+    background-color: beige;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+.profile-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    background-color: rgb(54 153 181 / 87%);
+    width: 70%;
+    height: 50%;
+}
+.profile-content > input {
+    width: 30vw;
+    margin-left: 15px;
+}
+.profile-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+.profile-buttons > button{
+    margin-right: 20px;
+}
+.update-button{
+    background-color: rgb(0, 157, 255);
+    color: white;
+}
+
+/* newbookコンポーネント */
+
+
+.newbook-title{
+    background-color: beige;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.newbook-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 30px auto;
+    background-color: rgb(54 153 181 / 87%);
+    width: 70%;
+    height: 80%;
+}
+
+.newbook-buttons{
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.newbook-buttons  button{
+    margin-right: 20px;
+}
+.newbook input, .newbook textarea {
+    width: 50vw;
+}
+
+.post-book-button{
+    background-color: rgb(246, 236, 125);
+    color: #1b7b25;
+}
+
+/* サンプル */
+
+.a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.b{ 
+    height: 70%;
+    width: 60%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.sample-header{
+    flex: 2;
+    display: flex;
+}
+.sample-header nav{
+    margin: 5px 5px 0 0;
+}
+.sample-main{
+    flex: 6;
+}
+.sample-title{
+    margin: auto 0 auto 5px;
+}
+.sample-footer{
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+}
+.sample-author{
+    display: flex;
+    flex-direction: column;
+}
+.sample-content-button{
+    display: flex;
+    height: 10%;
+}
+.sample-footer-links{
+    margin-right: 30px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.a a {
+    color: rgb(45, 112, 106);
+}
+.a p{
+    margin: 5px;
+}
+.sample-main h3{
+    margin: 0;
+    text-align: center;
+}
+hr{ 
+    margin: 0;
+}
+.sample-is-detail{
+    height: 90%;
+}
+
+.sample-is-review{
+    height: 90%;
+}
+.sample-detail-button{
+    flex: 1;
+    background-color: #7cd885;
+}
+
+.sample-review-button{
+    flex: 1;
+    background-color: rgb(139, 233, 230);
+}

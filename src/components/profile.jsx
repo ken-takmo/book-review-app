@@ -8,19 +8,21 @@ export const Profile = () => {
     const {fetchdata,fetchRes} = UseFetch();
     const location = useLocation();
     const prevName = location.state.name;
-    const [NewName, setNewName] = useState(prevName);
+    const [Name, setName] = useState(prevName);
     
     const newProfile = async() => {
 
         const body = {
-            name:NewName
+            name:Name
         }
+
         const res = await fetchdata('/users',"PUT",{"Authorization": `Bearer ${jwt}`},body);
         const result = await res.json();
+        const newName = Object.values(result);
 
         const successAction = () => {
-            alert(`ユーザー名が${Object.values(result)}に変更されました`);
-            navigate("/books");
+            alert(`ユーザー名が${newName}に変更されました`);
+            navigate("/books",{state:{reNamed:true}});
         }
 
         fetchRes(res,successAction,result)
@@ -29,18 +31,16 @@ export const Profile = () => {
 
 
     return(
-        <div>
-            <div>
-                <h1>ユーザー情報更新</h1>
-            </div>
-            <div>
+        <main className="profile">
+            <h1 className="profile-title">ユーザー情報</h1>
+            <div className="profile-content">
                 <label htmlFor="newName">新しいユーザー名</label>
-                <input type="text" id="newName" value={NewName} onChange={e => setNewName(e.target.value)}/>
-                <button onClick={newProfile}>変更</button>
+                <input type="text" id="newName" value={Name} onChange={e => setName(e.target.value)}/>
             </div>
-            <br />
-            <br />
-                <button onClick={() => {navigate("/books")}}>戻る</button>
-        </div>
+            <div className="profile-buttons">
+                <button className="update-button" onClick={newProfile}>変更</button>
+                <button className="prev-button" onClick={() => {navigate("/books")}}>戻る</button>
+            </div>
+        </main>
     )
 }
