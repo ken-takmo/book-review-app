@@ -11,10 +11,6 @@ export const Sample = () => {
     const onReviewClick = () => {
         setContent("review")
     }
-
-    const onSampleClick = () => {
-        setNumber(number + 10);
-    } 
     
     return(
         <main className="a">
@@ -24,8 +20,8 @@ export const Sample = () => {
                 </div>
                 <div className="sample-main">
                     <div className="sample-content-button">
-                        <button className="sample-detail-button" onClick={onDetailClick}>作品情報</button>
-                        <button className="sample-review-button" onClick={onReviewClick}>レビュー</button>
+                        <button className={content === "detail" ? "selected" : "not-selected"} onClick={onDetailClick}>作品情報</button>
+                        <button className={content === "review" ? "selected" : "not-selected"} onClick={onReviewClick}>レビュー</button>
                     </div>
                     {content === "detail" ?
                     <div className="sample-is-detail">
@@ -54,7 +50,6 @@ export const Sample = () => {
                         <button className="sample-prev-button">戻る</button>
                     </div>
                 </div>
-                <button onClick={onSampleClick}>サンプル</button>
             </div>
         </main>
     )

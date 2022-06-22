@@ -35,7 +35,6 @@ export const Newbook = () => {
 
     return(
         <main className="newbook">
-            <h1 className="newbook-title">書籍レビュー投稿</h1>
             <div className="newbook-content">
                 <div>
                     <label htmlFor="title">タイトル</label>

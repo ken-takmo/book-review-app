@@ -48,36 +48,29 @@ export const Edit = () => {
     }
 
     return(
-        <main>
-            <h1>書籍レビュー編集ページ</h1>
-            <div>
-                <div>
+        <main className="edit">
+            <div className="edit-forms">
+                <div className="edit-title">
                     <label htmlFor="title">タイトル</label>
                     <input type="text" id="title" value={titleText} onChange={(e) => setTitleText(e.target.value)}/>
                 </div>
-                <div>
+                <div className="edit-url">
                     <label htmlFor="url">URL</label>
                     <input type="text" id="url" value={urlText} onChange={(e) => setUrlText(e.target.value)}/>
                 </div>
-                <div>
+                <div className="edit-book-content">
                     <label htmlFor="detail">書籍内容</label>
                     <textarea type="text" id="detail" value={detailText} onChange={(e) => setDetailText(e.target.value)}/>
                 </div>
-                <div>
+                <div className="edit-review">
                     <label htmlFor="review">レビュー</label>
                     <textarea type="text" id="review" value={reviewText} onChange={(e) => setReviewText(e.target.value)}/>
                 </div>
             </div>
-            <div>
-                <button onClick={editBooks}>更新</button>
-            </div>
-            <br />
-            <div>
-                <button onClick={deleteBooks}>削除</button>
-            </div>
-            <br />
-            <div>
-                <button onClick={()=> {navigate("/books")}}>戻る</button>
+            <div className="edit-buttons">
+                <button className="repost-review-button" onClick={editBooks}>更新</button>
+                <button className="delete-review-button" onClick={deleteBooks}>削除</button>
+                <button className="prev-button" onClick={()=> {navigate("/books")}}>戻る</button>
             </div>
         </main>
     )

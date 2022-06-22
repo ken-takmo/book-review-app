@@ -32,7 +32,6 @@ export const Profile = () => {
 
     return(
         <main className="profile">
-            <h1 className="profile-title">ユーザー情報</h1>
             <div className="profile-content">
                 <label htmlFor="newName">新しいユーザー名</label>
                 <input type="text" id="newName" value={Name} onChange={e => setName(e.target.value)}/>

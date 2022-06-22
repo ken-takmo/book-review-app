@@ -4,36 +4,38 @@ html{
 *{
     box-sizing: inherit;
 }
-html, body{
-    height: 100%;
+html,body, #root, .App{
+    margin: 0;
+    min-height: 100vh;
 }
+
 header{
     background-color: rgb(45, 112, 106);
-    height: 15%;
+    height: 15vh;
+    width: 100%;
+    position: fixed;
     color: rgb(255, 255, 255);
 }
 main{
-    height: 85%;
-}
-#root{
-    height: 100%;
-}
-.App{
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    margin-top: 15vh;
 }
 
-h1{ 
+.App{
+    display: flex;
+    flex-direction: column;
+}
+
+h1,h2,h3{ 
     margin: 0;
 }
 
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48;
-  cursor: pointer;
-}
+
+
 
 /* ヘッダーコンポーネント*/
 /* 共通部分 */
@@ -60,6 +62,10 @@ h1{
     margin-right: 10px;
     font-size: 2vw;
 }
+
+.discription{
+    display: inline;
+}
 /* 未ログイン時のヘッダー */
 .menus{
     height: 100%;
@@ -74,12 +80,23 @@ h1{
     align-items: flex-end;
     justify-content: flex-end;
 }
+.userinfo{
+    display: flex;
+    align-items: center;
+}
 .username{
     font-size: 2vw;
     margin: 0;
 }
-.signout-button{
-    margin: 0 15px;
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+    cursor: pointer;
+    margin: 0 1em;
 }
 
 
@@ -111,17 +128,16 @@ button{
 a:hover{
     color: coral;
 }
-
-
-/* signin,signupコンポーネントデザイン */
-.signin,.signup{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+li {
+    list-style: none;
 }
 
+/* signin,signupコンポーネントデザイン */
+/* .signin,.signup{
+} */
+
 .signin-content,.signup-content{
-    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: rgb(248, 219, 155);
     height: 40vw;
     width: 40vw;
@@ -143,29 +159,64 @@ a:hover{
 /* ユーザー名コンポーネントデザイン */
 
 /* 書類一覧コンポーネントデザイン */
+/* .books{
+
+} */
+/* .books-title{
+    
+} */
 .reviews{
     word-break: break-word;
 }
 .review{
-    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin: 1em;
 }
-
-/* 詳細コンポーネント */
-.detail{
+.review-title{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+.review-main{
+    padding: 5px;
+    align-content: space-around;
+}
+.review-footer{
+    display: flex;
+    justify-content: flex-end;
+}
+.review-footers{
+    margin: 0 10px 10px 0;
+}
+.change-books{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 5vh 0;
 }
+/* .prev-books-button{
+} */
+.next-books-button{
+    margin-left: 5vw;
+}
+/* 詳細コンポーネント */
+/* .detail{
+} */
 .detail-content{
-    height: 80%;
+    min-height: 65vh;
     width: 60%;
-    border: 2px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
 }
 .detail-header{
     flex: 2;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
 }
 .detail-title{
     margin: auto 0 auto 5px;
@@ -176,19 +227,28 @@ a:hover{
     flex: 6;
 }
 
+.detail-main p {
+    height: 85%;
+    align-items: center;
+}
+
+.detail-main button {
+    flex: 1;
+    border-bottom: 3px solid #5ab4bd;
+    border-left: #fff;
+    border-right: #fff;
+    border-top: #fff;
+}
+.detail-main button:hover{
+    opacity: 0.7;
+    transition: opacity 0.4s;
+}
+
 .detail-main-button{
     display: flex;
     height: 10%;
 }
 
-.detail-button{
-    flex: 1;
-    background-color: #7cd885;
-}
-.review-button{
-    flex: 1;
-    background-color: rgb(139, 233, 230);
-}
 
 .is-detail{
     height: 90%;
@@ -202,10 +262,13 @@ a:hover{
     flex: 2;
     display: flex;
     justify-content: space-between;
+    min-height: 10vh;
 }
+
 .author{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 .footer-links{
@@ -220,7 +283,9 @@ a:hover{
     color: rgb(45, 112, 106);
 }
 .detail p {
-    margin: 5px;
+    margin: 0;
+    padding: 4px 4px 0 4px;
+    display: flex;
 }
 .detail h2{
     margin: 0;
@@ -228,23 +293,31 @@ a:hover{
 }
 .detail h3 {
     margin: 0;
-    text-align: center;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .detail hr {
     margin: 0;
 }
-/* .review-header
-.review-content
-.author */
+
+.selected{
+    background-color: #5ab4bd;
+    color: white;;
+}
+.not-selected{
+    color: black;
+    background-color: rgb(229 226 226);
+}
 
 /* ユーザー情報コンポーネント */
 /* .profile{
-    display: flex;
-    align-items: center;
+    height: 85%;
+    justify-content: center;
 } */
 .profile-title{
-    background-color: beige;
     width: 100%;
     height: 10%;
     display: flex;
@@ -254,11 +327,11 @@ a:hover{
 .profile-content{
     display: flex;
     justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     align-items: center;
-    margin: 30px auto;
-    background-color: rgb(54 153 181 / 87%);
+    background-color: #ffdfdf6e;
     width: 70%;
-    height: 50%;
+    min-height: 50vh;
 }
 .profile-content > input {
     width: 30vw;
@@ -267,18 +340,20 @@ a:hover{
 .profile-buttons{
     display: flex;
     justify-content: flex-end;
+    margin-top: 5vh;
 }
-.profile-buttons > button{
-    margin-right: 20px;
-}
+
+
 .update-button{
-    background-color: rgb(0, 157, 255);
+    background-color: #5ab4bd;
     color: white;
 }
 
 /* newbookコンポーネント */
 
-
+/* .newbook{
+    height: 85%;
+} */
 .newbook-title{
     background-color: beige;
     width: 100%;
@@ -293,10 +368,10 @@ a:hover{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    margin: 30px auto;
-    background-color: rgb(54 153 181 / 87%);
+    background-color: #ffdfdf6e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 70%;
-    height: 80%;
+    min-height: 70vh;
 }
 
 .newbook-buttons{
@@ -304,20 +379,59 @@ a:hover{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 30px;
+    margin-top: 5vh;
 }
 
-.newbook-buttons  button{
-    margin-right: 20px;
-}
 .newbook input, .newbook textarea {
     width: 50vw;
 }
 
 .post-book-button{
-    background-color: rgb(246, 236, 125);
-    color: #1b7b25;
+    background-color: #5ab4bd;
+    color: #ffffff;
 }
+
+
+/* editコンポーネント */
+/* .edit{} */
+.edit-forms{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffdfdf6e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    min-height: 70vh;
+    margin-top: 5vh;
+}
+.edit-title{
+    text-align: center;
+}
+.edit-url{
+    text-align: center
+}
+.edit-book-content{
+    text-align: center
+}
+.edit-review{
+    text-align: center
+}
+.edit-buttons{
+    margin: 5vh 0;
+}
+.repost-review-button{
+    background-color: #5ab4bd;
+}
+.delete-review-button{
+    margin-left: 5vw;
+    background-color: #ff4040;
+}
+.prev-button{
+    margin-left: 5vw;
+}
+
+
 
 /* サンプル */
 
@@ -329,7 +443,8 @@ a:hover{
 .b{ 
     height: 70%;
     width: 60%;
-    border: 2px solid black;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
 }
@@ -357,7 +472,11 @@ a:hover{
 }
 .sample-content-button{
     display: flex;
-    height: 10%;
+    background-color: #fff;
+}
+.content-buttons{
+    border-bottom: 3px solid #5ab4bd;
+    color: white;
 }
 .sample-footer-links{
     margin-right: 30px;
@@ -388,10 +507,18 @@ hr{
 }
 .sample-detail-button{
     flex: 1;
-    background-color: #7cd885;
 }
 
 .sample-review-button{
     flex: 1;
-    background-color: rgb(139, 233, 230);
+}
+
+
+
+
+.sample-main button{
+    flex: 1;
+    border-bottom: 3px solid #5ab4bd;
+    border-left: 1px solid #5ab4bd;
+    border-right: 1px solid #5ab4bd;
 }

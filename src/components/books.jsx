@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate, useParams} from "react-router-dom";
 import { useUser } from "./useUser";
 export function Books (){
     const jwt = localStorage.getItem('jwt')
@@ -8,7 +8,6 @@ export function Books (){
     const [offset, setOffset] = useState("")
     const [number, setNumber] = useState(0)
 
-    
     const results = useUser(`/books${offset}`,{"Authorization": `Bearer ${jwt}`});
 
 
@@ -37,27 +36,31 @@ export function Books (){
     
     return(
         <main className="books">
-            <h1>書籍レビュー一覧</h1>            
             {jwt ? 
-            <div>
+            <div className="books-content">            
                 <div className="reviews">
                     {Object.values(results).map((result) => (
-                    <ul key={result.id}>
-                        <li >タイトル: {result.title}</li>
-                        <li >書籍内容: {result.detail}</li>
-                        <li >レビュー: {result.review}</li>
-                        <li >URL: <a href={result.url} target="_blank">{result.title}を詳しく</a></li>
-                        <button onClick={() => {navigate(`/detail/${result.id}`)}}>詳細</button>
-                        {result.isMine &&<button onClick={() => {navigate(`/edit/${result.id}`,{state:result})}}>編集</button>}
-                    </ul>
+                    <div className="review" key={result.id}>
+                        <h2 className="review-title">{result.title}</h2>
+                        <hr />
+                        <div className="review-main">
+                            <p >書籍内容: {result.detail}</p>
+                            <h3 >レビュー: {result.review}</h3>
+                        </div>
+                        <div className="review-footer">
+                            <nav className="review-footers"><a href={result.url} target="_blank">この書籍のリンク</a></nav>
+                            <button className="review-footers" onClick={() => {navigate(`/detail/${result.id}`, {state:number})}}>詳細</button>
+                            {result.isMine &&<button className="review-footers" onClick={() => {navigate(`/edit/${result.id}`,{state:result})}}>編集</button>}
+                        </div>
+                    </div>
                     ))}
                 </div>
-                <div className="next-books">
-                    <button onClick={onPrevBooksChange}>前の10件を表示</button>
-                    <button onClick={onNextBooksChange}>次の10件を表示</button>
+                <div className="change-books">
+                    <button className="prev-books-button" onClick={onPrevBooksChange}>前の10件を表示</button>
+                    <button className="next-books-button" onClick={onNextBooksChange}>次の10件を表示</button>
                 </div>
             </div>:
-            <div>
+            <div className="books-content">
                 <Link to="/signin">ログインしてください</Link>
             </div>
             }

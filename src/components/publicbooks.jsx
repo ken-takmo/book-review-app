@@ -37,23 +37,28 @@ export const Publicbooks = () => {
     
     return(
         <main>
-            <p>ログインするとレビューの投稿ができます</p>
-            <div className="reviews">
-                {Object.values(results).map((result) => (
+            <p>ログインするとレビューの投稿、レビューの詳細閲覧ができます</p>
+            <div className="books-content">
+                <div className="reviews">
+                    {Object.values(results).map((result) => (
                     <div className="review" key={result.id}>
-                        <h2 >タイトル: {result.title}</h2>
+                        <h2 className="review-title">{result.title}</h2>
                         <hr />
-                        <p>書籍内容: {result.detail}</p>
-                        <h3 > レビュー: {result.review}</h3>
-                        {/* <p>投稿者: {result.reviewer}</p>
-                        <p id="url">URL: <a href={result.url} target="_blank">{result.url}</a></p> */}
-                        {/* <p >ID: {result.id}</p> */}
+                        <div className="review-main">
+                            <p>書籍内容: {result.detail}</p>
+                            <h3 > レビュー: {result.review}</h3>
+                        </div>
+                        <div className="review-footer">
+                            <nav className="review-footers"><a href={result.url} target="_blank">この書籍のリンク</a></nav>
+                            <button className="review-footers" onClick={() => {navigate("/signin")}}>詳細</button>
+                        </div>
                     </div>
-                ))}
-            </div>
-            <div className="next-books">
-                <button onClick={onPrevBooksChange}>前の10件を表示</button>
-                <button onClick={onNextBooksChange}>次の10件を表示</button>
+                    ))}
+                </div>
+                <div className="next-books">
+                    <button className="prev-books-button" onClick={onPrevBooksChange}>前の10件を表示</button>
+                    <button className="next-books-button" onClick={onNextBooksChange}>次の10件を表示</button>
+                </div>
             </div>
         </main>
     )
