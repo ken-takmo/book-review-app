@@ -172,6 +172,7 @@ li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 0;
     margin: 1em;
+    min-width: calc(100vw - 2em);
 }
 .review-title{
     display: flex;
@@ -435,90 +436,10 @@ li {
 
 /* サンプル */
 
-.a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.b{ 
-    height: 70%;
-    width: 60%;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-}
-.sample-header{
-    flex: 2;
-    display: flex;
-}
-.sample-header nav{
-    margin: 5px 5px 0 0;
-}
-.sample-main{
-    flex: 6;
-}
-.sample-title{
-    margin: auto 0 auto 5px;
-}
-.sample-footer{
-    flex: 2;
-    display: flex;
-    justify-content: space-between;
-}
-.sample-author{
-    display: flex;
-    flex-direction: column;
-}
-.sample-content-button{
-    display: flex;
-    background-color: #fff;
-}
 .content-buttons{
     border-bottom: 3px solid #5ab4bd;
     color: white;
 }
-.sample-footer-links{
-    margin-right: 30px;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.a a {
-    color: rgb(45, 112, 106);
-}
-.a p{
-    margin: 5px;
-}
-.sample-main h3{
-    margin: 0;
-    text-align: center;
-}
 hr{ 
     margin: 0;
-}
-.sample-is-detail{
-    height: 90%;
-}
-
-.sample-is-review{
-    height: 90%;
-}
-.sample-detail-button{
-    flex: 1;
-}
-
-.sample-review-button{
-    flex: 1;
-}
-
-
-
-
-.sample-main button{
-    flex: 1;
-    border-bottom: 3px solid #5ab4bd;
-    border-left: 1px solid #5ab4bd;
-    border-right: 1px solid #5ab4bd;
 }

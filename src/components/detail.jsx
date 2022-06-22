@@ -21,8 +21,6 @@ export const Detail = () => {
         setContent("review")
     }
 
-    console.log(number);
-
     return(
         <main className="detail">
             <div className="detail-content">

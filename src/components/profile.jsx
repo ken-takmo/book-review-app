@@ -1,24 +1,24 @@
-import { useState,} from "react"
+import { useState, useContext} from "react"
 import { useNavigate,useLocation } from "react-router-dom";
-import { UseFetch} from "./useFetch";
+import { UseFetch } from "./useFetch";
+import { UserContext } from "./userContext";
 export const Profile = () => {
     
     const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
     const {fetchdata,fetchRes} = UseFetch();
-    const location = useLocation();
-    const prevName = location.state.name;
-    const [Name, setName] = useState(prevName);
+    const {userName, setUserName} = useContext(UserContext);
+    const [newName, setNewName] = useState(userName);
     
     const newProfile = async() => {
 
         const body = {
-            name:Name
+            name:newName
         }
 
         const res = await fetchdata('/users',"PUT",{"Authorization": `Bearer ${jwt}`},body);
         const result = await res.json();
-        const newName = Object.values(result);
+        setUserName(Object.values(result));
 
         const successAction = () => {
             alert(`ユーザー名が${newName}に変更されました`);
@@ -34,7 +34,7 @@ export const Profile = () => {
         <main className="profile">
             <div className="profile-content">
                 <label htmlFor="newName">新しいユーザー名</label>
-                <input type="text" id="newName" value={Name} onChange={e => setName(e.target.value)}/>
+                <input type="text" id="newName" value={newName} onChange={e => setNewName(e.target.value)}/>
             </div>
             <div className="profile-buttons">
                 <button className="update-button" onClick={newProfile}>変更</button>
