@@ -2,30 +2,40 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams} from "react-router-dom";
 import { useUser } from "./useUser";
 export function Books (){
-    const jwt = localStorage.getItem('jwt')
+
+    const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
 
-    const [offset, setOffset] = useState("")
-    const [number, setNumber] = useState(0)
+    const [offset, setOffset] = useState("");
+    const [number, setNumber] = useState(0);
+    const [searchNumber, setSearchNumber] = useState(0);
+    const [minCurrentPage, setMinCurrentPage] = useState(1);
+    const [maxCurrentPage, setMaxCurrentPage] = useState(10);
 
     const results = useUser(`/books${offset}`,{"Authorization": `Bearer ${jwt}`});
 
-
-    const onNextBooksChange = () => {
-        if(number === 0) {
-            setNumber(9);
-        }else{
-            setNumber(number + 10);
-        }
-    }
-
     useEffect(() => {
-        setOffset(`?offset=${number}`)
-        navigate(`?offset=${number}`);
+        setOffset(`?offset=${number}`);
+        navigate(`?offset=${number + 1}`);
+
+        if(number === 0){
+            setMinCurrentPage(1);
+            setMaxCurrentPage(10);
+        }else{
+            setMinCurrentPage(number + 1);
+            setMaxCurrentPage(number + 10);
+        }
+
+        window.scrollTo(0, 0);
+
     },[number])
 
+    const onNextBooksChange = () => {
+        setNumber(number + 10);
+    }
+
     const onPrevBooksChange = () => {
-        if(number === 9) {
+        if(0 < number && number < 10) {
             setNumber(0);
         }else if(number === 0){
             alert("最新のレビューです")
@@ -34,11 +44,14 @@ export function Books (){
         }
     }
 
+    const searchBook = () => {
+        setNumber(Number(searchNumber) - 1);
+    }
 
     return(
         <main className="books">
             {jwt ? 
-            <div className="books-content">            
+            <div className="books-content">   
                 <div className="reviews">
                     {Object.values(results).map((result) => (
                     <div className="review" key={result.id}>
@@ -49,16 +62,21 @@ export function Books (){
                             <h3 >レビュー: {result.review}</h3>
                         </div>
                         <div className="review-footer">
-                            <nav className="review-footers"><a href={result.url} target="_blank">この書籍のリンク</a></nav>
-                            <button className="review-footers" onClick={() => {navigate(`/detail/${result.id}`, {state:number})}}>詳細</button>
+                            <button className="review-footers" onClick={() => {navigate(`/detail/${result.id}`)}}>詳しく</button>
                             {result.isMine &&<button className="review-footers" onClick={() => {navigate(`/edit/${result.id}`,{state:result})}}>編集</button>}
                         </div>
                     </div>
                     ))}
                 </div>
+                <p className="current-page">{minCurrentPage} 〜 {maxCurrentPage}件</p>
                 <div className="change-books">
                     <button className="prev-books-button" onClick={onPrevBooksChange}>前の10件を表示</button>
                     <button className="next-books-button" onClick={onNextBooksChange}>次の10件を表示</button>
+                </div>
+                <div className="search-books">
+                    <label htmlFor="search">何件目から表示しますか</label>
+                    <input type="text" placeholder="半角数字を入力" onChange={(e) => {setSearchNumber(e.target.value)}}/>
+                    <button onClick={searchBook}>表示</button>
                 </div>
             </div>:
             <div className="books-content">
