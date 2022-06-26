@@ -50,6 +50,7 @@ h1,h2,h3{
 .app-name{
     font-size: 3vw;
     padding-left: 10px;
+    font-family: serif;
 }
 
 
@@ -103,14 +104,12 @@ h1,h2,h3{
 /* フォーム部品デザイン */
 textarea {
     display: inline-block;
-    width: 500px;
+    width: 50vw;
+    height: 100px;
 }
 
 input{
-    width: 500px;
-}
-.signin-forms input,.signup-forms input{
-    width: 20vw;
+    width: 30vw;
 }
 
 label{
@@ -144,16 +143,40 @@ li {
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: space-around;
+    border-radius: 20px;
 }
 
 .signin-title,.signup-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     font-size: 3vw;
+    flex: 2;
 }
 
-.signin-passwordform, .signin-button,
-.signup-email,.signup-password, .signup-button, .to-login{
-    margin-top: 10%;
+.signin-forms, .signup-forms {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.signin-link, .signup-link {
+    flex: 1;
+}
+
+.signin-button, .signup-button {
+    height: 30px;
+    width: 90px;
+    margin: 0 auto;
+    background-color: #f5fffb;
+    border-radius: 5px;
+}
+
+.signin-content input, .signup-content input {
+    border-radius: 5px;
+    border-color: #5ab4bd;
 }
 
 /* ユーザー名コンポーネントデザイン */
@@ -185,7 +208,10 @@ li {
 .review-main{
     padding: 5px;
     align-content: space-around;
+    /* max-height: 20vh;
+    overflow-y: hidden; */
 }
+
 .review-footer{
     display: flex;
     justify-content: flex-end;
@@ -387,6 +413,8 @@ li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 70%;
     min-height: 70vh;
+    margin-top: 5vh;
+    padding: 30px 0;
 }
 
 .newbook-buttons{
@@ -394,7 +422,7 @@ li {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 5vh;
+    margin: 5vh 0;
 }
 
 .newbook input, .newbook textarea {
@@ -419,19 +447,20 @@ li {
     width: 70%;
     min-height: 70vh;
     margin-top: 5vh;
+    padding: 30px 0;
 }
-.edit-title{
+
+.edit-forms input {
+    width: 50vw;
+}
+
+.edit-title,
+.edit-url,
+.edit-book-content,
+.edit-review{
     text-align: center;
 }
-.edit-url{
-    text-align: center
-}
-.edit-book-content{
-    text-align: center
-}
-.edit-review{
-    text-align: center
-}
+
 .edit-buttons{
     margin: 5vh 0;
 }
