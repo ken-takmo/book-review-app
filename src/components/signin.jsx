@@ -14,6 +14,16 @@ export function Signin(){
         email: emailText,
         password: passwordText,
     }
+
+    const errorAction = () => {
+        if(!emailText){
+            alert("メールアドレスを入力してください");
+        }else if(!passwordText){
+            alert("パスワードを入力してください");
+        }else{
+            alert("メールアドレスまたはパスワードが正しくありません");
+        }
+    }
     
     const onSigninClick = async () => {
         const res = await fetchdata("/signin","POST",undefined,body);
@@ -25,8 +35,9 @@ export function Signin(){
             navigate("/books",{replace: true})
         }
 
-        fetchRes(res,successAction,result);
+        fetchRes(res, successAction, errorAction, result);
     }
+
     
 
     return(
@@ -44,7 +55,7 @@ export function Signin(){
                     </div>
                     <button onClick={onSigninClick} className="signin-button">ログイン</button>
                 </div>
-                <Link to="/signup" className="to-signup">登録画面へ</Link>
+                <Link to="/signup" className="signup-link">登録画面へ</Link>
             </div>
         </main>
         

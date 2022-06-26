@@ -1,41 +1,43 @@
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import { UseFetch } from "./useFetch";
 import { Link, useNavigate } from "react-router-dom";
 export function SignUp(){
 
-    const jwt = localStorage.getItem('jwt');
-
     const navigate = useNavigate();
+    const {fetchdata,fetchRes} = UseFetch();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {fetchdata,fetchRes} = UseFetch()
- 
-    // const signinUrl = document.getElementById("login");
-    // const signupUrl = document.getElementById("signup")
-    // const booksUrl = document.getElementById("books");
     
     const body = {
         name: name,
         email: email,
         password: password
     }
+
+    const errorAction = () => {
+        if(!name){
+            alert("ユーザーネームを入力してください");
+        }else if(!password){
+            alert("パスワードを入力してください");
+        }else if(!email){
+            alert("メールアドレスを入力してください");
+        }else{
+            alert("もう一度入力し直してください");
+        }
+    }
+
     const onSignupClick = async() => {
         const res = await fetchdata("/users", "POST", undefined, body)
         const result = await res.json()
+
         const successAction = () => {
             alert("登録されました");
             navigate("/signin");
         }
-        fetchRes(res,successAction,result);
-    }
 
-    // useEffect(() => {
-    //     if(jwt){
-    //         signinUrl.setAttribute('href',booksUrl);
-    //         signupUrl.setAttribute('href',booksUrl);
-    //     }
-    // },[jwt])
+        fetchRes(res, successAction, errorAction, result);
+    }
     
     return(
         <main className="signup">
@@ -56,7 +58,7 @@ export function SignUp(){
                     </div>
                     <button className="signup-button" type="submit" onClick={onSignupClick}>登録</button>
                 </div>
-                <Link to="/signin" className="to-signin">ログイン画面へ</Link>
+                <Link to="/signin" className="signin-link">ログイン画面へ</Link>
             </div>
         </main>
     )

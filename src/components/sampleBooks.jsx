@@ -5,8 +5,8 @@ export function Books (){
 
     const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
-    // const location = useLocation();
-    // const prevNumber = location.state;
+    const location = useLocation();
+    const prevNumber = location.state;
 
     const [offset, setOffset] = useState("");
     const [number, setNumber] = useState(0);
@@ -16,13 +16,13 @@ export function Books (){
 
     const results = UseGetBooks(`/books${offset}`,{"Authorization": `Bearer ${jwt}`});
 
-    // useEffect(() => {
-    //     if(prevNumber){
-    //         setNumber(prevNumber);
-    //     }
-    // },[prevNumber])
+    useEffect(() => {
+        if(prevNumber){
+            setNumber(prevNumber);
+        }
+    },[prevNumber])
 
-    // console.log(offset);
+    console.log(offset);
     
     useEffect(() => {
         setOffset(`?offset=${number}`);

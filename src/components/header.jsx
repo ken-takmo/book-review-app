@@ -17,6 +17,7 @@ export const Header = () => {
                 const result = await res.json();
                 setUserName(Object.values(result));
             }
+            console.log("ヘッダーfetching");
         }
         isLoginHeader();
     },[jwt]);
@@ -26,6 +27,7 @@ export const Header = () => {
         alert("ログアウトしました");
         navigate("/signin")
     }
+    
     return(
         <header>
             {jwt ?
@@ -37,8 +39,8 @@ export const Header = () => {
                         <div className="material-symbols-outlined" onClick={signout}><span className="discription">logout</span></div>
                     </div>
                     <nav className="links">
-                        <Link to="/profile" className="link">ユーザー情報編集ページへ</Link>
-                        <Link to="/new" className="link">レビュー投稿ページへ</Link>
+                        <Link to="/profile" className="link">ユーザー情報編集</Link>
+                        <Link to="/new" className="link">レビュー投稿</Link>
                         <Link to="/books" className="link" >書籍一覧</Link>
                     </nav>
                 </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UseFetch } from "./useFetch";
 export const Newbook = () => {
 
@@ -22,7 +22,6 @@ export const Newbook = () => {
         }
 
         const res = await fetchdata("/books","POST",{'Authorization': `Bearer ${jwt}`},body)
-
         const result = await res.json();
 
         const successAction = () => {
@@ -34,29 +33,36 @@ export const Newbook = () => {
     }
 
     return(
-        <main className="newbook">
-            <div className="newbook-content">
-                <div>
-                    <label htmlFor="title">タイトル</label>
-                    <input type="text" id="title" onChange={e => setTitle(e.target.value)} placeholder="タイトル"/>
+        <div>
+            {jwt ?
+            <main className="newbook">
+                <div className="newbook-content">
+                    <div>
+                        <label htmlFor="title">タイトル</label>
+                        <input type="text" id="title" onChange={e => setTitle(e.target.value)} placeholder="タイトル"/>
+                    </div>
+                    <div>
+                        <label htmlFor="url">URL</label>
+                        <input type="text" id="url" onChange={e => setUrl(e.target.value)} placeholder="URL"/>
+                    </div>
+                    <div>
+                        <label htmlFor="detail">書籍内容</label>
+                        <textarea id="detail" rows="5" onChange={e => setDetail(e.target.value)} placeholder="本の内容を書いてください"/>
+                    </div>
+                    <div>
+                        <label htmlFor="review">レビュー</label>
+                        <textarea rows="5" id="review" onChange={e => setReview(e.target.value)} placeholder="本のレビューを書いてください"/>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="url">URL</label>
-                    <input type="text" id="url" onChange={e => setUrl(e.target.value)} placeholder="URL"/>
+                <div className="newbook-buttons">
+                    <button className="post-book-button" onClick={postBook}>投稿</button>
+                    <button className="prev-button" onClick={() => {navigate("/books")}}>戻る</button>
                 </div>
-                <div>
-                    <label htmlFor="detail">書籍内容</label>
-                    <textarea id="detail" rows="5" onChange={e => setDetail(e.target.value)} placeholder="本の内容を書いてください"/>
-                </div>
-                <div>
-                    <label htmlFor="review">レビュー</label>
-                    <textarea rows="5" id="review" onChange={e => setReview(e.target.value)} placeholder="本のレビューを書いてください"/>
-                </div>
-            </div>
-            <div className="newbook-buttons">
-                <button className="post-book-button" onClick={postBook}>投稿</button>
-                <button className="prev-button" onClick={() => {navigate("/books")}}>戻る</button>
-            </div>
-        </main>
+            </main>:
+            <main className="books-content">
+                <Link to="/signin">ログインしてください</Link>
+            </main>
+            }
+        </div>
     )
 }

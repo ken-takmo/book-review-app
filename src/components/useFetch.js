@@ -7,18 +7,17 @@ export const UseFetch = () => {
                 headers: headers,
                 body: JSON.stringify(body)
             })
-        console.log("fetching");
         return res;
     }
 
-    const fetchRes = (res,successAction,result) => {
+    const fetchRes = (res,successAction, error400_403Action,result) => {
         switch(res.status){
             case 200:
                 successAction();
                 break;
             case 403:
             case 400:
-                alert(result.ErrorMessageJP)
+                error400_403Action();
                 break;
             case 500:
                 alert(result.ErrorMessageJP)
