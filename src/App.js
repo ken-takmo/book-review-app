@@ -9,7 +9,7 @@ import { Detail } from "./components/detail";
 import { Edit } from "./components/edit";
 import { Publicbooks } from "./components/publicbooks";
 import { Header } from "./components/header";
-import { Sample } from "./components/sample";
+import { Sample } from "./components/sampleSearchUserBooks";
 import { UserContext } from "./components/userContext";
 
 function App() {

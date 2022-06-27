@@ -26,7 +26,7 @@ export function Books (){
     // クエリパラメータをnumberに代入
     useEffect(() => {
         if(prevNumber){
-            setP(prevNumber);
+            setPrevPage(prevNumber);
         }
     },[prevNumber])
 

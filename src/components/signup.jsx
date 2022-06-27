@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { UseFetch } from "./useFetch";
 import { Link, useNavigate } from "react-router-dom";
+
 export function SignUp(){
 
     const navigate = useNavigate();
