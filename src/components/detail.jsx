@@ -9,15 +9,10 @@ export const Detail = () => {
     const jwt = localStorage.getItem("jwt");
     const [content, setContent] = useState("detail");
 
-    // booksコンポーネントからクエリパラメータを受け取る
-    const location = useLocation();
-    const prevNumber = location.state;
-    console.log(prevNumber + " detail");
-
     const details = UseGetBooks(`/books/${Object.values(params)}`,{"Authorization": `Bearer ${jwt}`});
     
-    const onContentChangeClick = (string) => {
-        setContent(string);
+    const onContentChangeClick = (contentType) => {
+        setContent(contentType);
     }
     
     return(
@@ -53,9 +48,7 @@ export const Detail = () => {
                     </div>
                     <div className="footer-links">
                         <nav className="detail-url"><a target="_blank" href={details.url}>この書籍の参照リンク</a></nav>
-                        {/* <button className="detail-prev-button" onClick={()=> {navigate(`/books`)}}>戻る</button> */}
-                        {/* navigateでクエリパラメータをそのままbooksコンポーネントに返す */}
-                        <button className="detail-prev-button" onClick={()=> {navigate(`/books`, {state:prevNumber})}}>戻る</button>
+                        <button className="detail-prev-button" onClick={()=> {navigate(-1)}}>戻る</button>
                     </div>
                 </div>
             </div>:
