@@ -17,7 +17,6 @@ export const Header = () => {
                 const result = await res.json();
                 setUserName(Object.values(result));
             }
-            console.log("ヘッダーfetching");
         }
         isLoginHeader();
     },[jwt]);

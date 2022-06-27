@@ -5,8 +5,14 @@ export function Books (){
 
     const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
-    // const location = useLocation();
-    // const prevNumber = location.state;
+
+    // detailコンポーネントから前ページのクエリパラメータを受け取る
+    const location = useLocation();
+    const prevNumber = location.state;
+
+    // 受け取ったクエリパラメータをstateで管理
+    const [prevPage, setPrevPage] = useState(0);
+
 
     const [offset, setOffset] = useState("");
     const [number, setNumber] = useState(0);
@@ -16,19 +22,25 @@ export function Books (){
 
     const results = UseGetBooks(`/books${offset}`,{"Authorization": `Bearer ${jwt}`});
 
-    // useEffect(() => {
-    //     if(prevNumber){
-    //         setNumber(prevNumber);
-    //     }
-    // },[prevNumber])
 
-    // console.log(offset);
+    // クエリパラメータをnumberに代入
+    useEffect(() => {
+        if(prevNumber){
+            setP(prevNumber);
+        }
+    },[prevNumber])
+
+    useEffect(() => {
+        setNumber(prevPage);
+    },[prevPage])
+
     
     useEffect(() => {
-        setOffset(`?offset=${number}`);
-        navigate(`?offset=${number + 1} `);
         
-        if(number === 0){
+        setOffset(`?offset=${number}`);
+        navigate(`?offset=${number + 1} `)
+
+        if(number === 0 ){
             setMinCurrentPage(1);
             setMaxCurrentPage(10);
         }else{
@@ -37,7 +49,7 @@ export function Books (){
         }
         window.scrollTo(0, 0);
         
-    },[number])
+    },[number]);
     
     const onNextBooksChange = () => {
         setNumber(number + 10);
