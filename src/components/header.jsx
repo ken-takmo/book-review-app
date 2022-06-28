@@ -34,8 +34,9 @@ export const Header = () => {
                 <h1 className="app-name">書籍レビューアプリ</h1>
                 <div className="login-menus">
                     <div className="userinfo">
-                        <div className="username">ユーザーネーム: {userName}</div>    
-                        <div className="material-symbols-outlined" onClick={signout}><span className="discription">logout</span></div>
+                        <div className="username">ユーザーネーム: <span className="name">{userName}</span></div>    
+                        {/* <div className="material-symbols-outlined" onClick={signout}><span className="discription">logout</span></div> */}
+                        <span class="material-symbols-outlined md-40" onClick={signout}>logout</span>
                     </div>
                     <nav className="links">
                         <Link to="/profile" className="link">ユーザー情報編集</Link>

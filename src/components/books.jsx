@@ -7,7 +7,7 @@ export function Books (){
     const navigate = useNavigate();
     const url = "/books?offset=";
     const [params] = useSearchParams();
-    const [searchNumber, setSearchNumber] = useState(1);
+    const [searchParams, setSearchParams] = useState(1);
     const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) -1);
 
     const results = UseGetBooks(`/books?offset=${offset}`,{"Authorization": `Bearer ${jwt}`});
@@ -38,11 +38,11 @@ export function Books (){
     }
     
     const searchBook = () => {
-        if(String(searchNumber).match(/^\d+$/)){
-            setOffset(searchNumber -1);
-            navigate(`${url}${searchNumber}`);
+        if(String(searchParams).match(/^\d+$/)){
+            setOffset(searchParams -1);
+            navigate(`${url}${searchParams}`);
             window.scrollTo(0, 0);
-            setSearchNumber("");
+            setSearchParams("");
         }else{
             alert("半角数字を入力してください")
         }
@@ -58,8 +58,8 @@ export function Books (){
                         <h2 className="review-title">{result.title}</h2>
                         <hr />
                         <div className="review-main">
-                            <p >書籍内容: {result.detail}</p>
-                            <h3 >レビュー: {result.review}</h3>
+                            <p><span className="content1">書籍内容 :</span> {result.detail}</p>
+                            <h3><span className="content2">レビュー :</span> {result.review}</h3>
                         </div>
                         <div className="review-footer">
                             <button className="review-footers" onClick={() => {navigate(`/detail/${result.id}`)}}>詳しく</button>
@@ -78,7 +78,7 @@ export function Books (){
                 </div>
                 <div className="search-books">
                     <label htmlFor="search">何件目から表示しますか</label>
-                    <input type="text" placeholder="半角数字を入力" onChange={(e) => {setSearchNumber(Number(e.target.value))}}></input>
+                    <input type="text" placeholder="半角数字を入力" onChange={(e) => {setSearchParams(Number(e.target.value))}}></input>
                     <button onClick={searchBook}>表示</button>
                 </div>
             </div>:

@@ -20,6 +20,7 @@ export const UseFetch = () => {
                 error400_403Action();
                 break;
             case 500:
+            case 503:    
                 alert(result.ErrorMessageJP)
                 break;
             default:

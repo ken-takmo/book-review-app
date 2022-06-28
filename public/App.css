@@ -48,7 +48,7 @@ h1,h2,h3{
     align-items: center;
 }
 .app-name{
-    font-size: 3vw;
+    font-size: 4vw;
     padding-left: 10px;
     font-family: serif;
 }
@@ -84,12 +84,15 @@ h1,h2,h3{
 .userinfo{
     display: flex;
     align-items: center;
+    margin: auto 0;
 }
 .username{
     font-size: 2vw;
     margin: 0;
 }
-
+.name{
+    color: #ffed7d;;
+}
 .material-symbols-outlined {
     font-variation-settings:
     'FILL' 0,
@@ -97,9 +100,12 @@ h1,h2,h3{
     'GRAD' 0,
     'opsz' 48;
     cursor: pointer;
-    margin: 0 1em;
+    margin: 0 10px;
 }
 
+.material-symbols-outlined.md-40 {
+    font-size: 40px;
+}
 
 /* フォーム部品デザイン */
 textarea {
@@ -210,6 +216,15 @@ li {
     align-content: space-around;
     /* max-height: 20vh;
     overflow-y: hidden; */
+}
+
+.content1{
+    font-weight: bold;
+}
+
+.content2{
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .review-footer{
@@ -372,6 +387,8 @@ li {
     display: flex;
     justify-content: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     background-color: #ffdfdf6e;
     width: 70%;
@@ -379,7 +396,6 @@ li {
 }
 .profile-content > input {
     width: 30vw;
-    margin-left: 15px;
 }
 .profile-buttons{
     display: flex;
@@ -491,6 +507,7 @@ hr{
 }
 
 @media screen and (max-width: 480px){
+
     .header-container{
         display: flex;
         flex-direction: column;
@@ -508,6 +525,11 @@ hr{
 
     .login-menus, .menus{
         flex: 1;
+        align-items: center;
+    }
+
+    .material-symbols-outlined.md-40 {
+        font-size: 20px;
     }
 
     .signin-content, .signup-content{
@@ -517,5 +539,31 @@ hr{
 
     .signin input, .signup input {
         width: 50vw;
+    }
+
+    .detail-content, .profile-content, .edit-forms, .newbook-content {
+        width: 90vw;
+    }
+
+    .profile-content input, .edit-forms input, .newbook-content input {
+        width: 80vw;
+    }
+
+    .edit-forms textarea, .newbook-content textarea {
+        width: 80vw;
+    }
+
+    .detail-footer{
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .detail-footer * {
+        margin-bottom: 10px;
+    }
+
+    .footer-links{
+        margin: 0;
     }
 }
