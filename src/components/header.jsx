@@ -36,7 +36,7 @@ export const Header = () => {
                     <div className="userinfo">
                         <div className="username">ユーザーネーム: <span className="name">{userName}</span></div>    
                         {/* <div className="material-symbols-outlined" onClick={signout}><span className="discription">logout</span></div> */}
-                        <span class="material-symbols-outlined md-40" onClick={signout}>logout</span>
+                        <span className="material-symbols-outlined md-40" onClick={signout}>logout</span>
                     </div>
                     <nav className="links">
                         <Link to="/profile" className="link">ユーザー情報編集</Link>

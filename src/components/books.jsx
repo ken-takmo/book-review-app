@@ -48,13 +48,20 @@ export function Books (){
         }
     }
 
+    useEffect(() => {
+        if(!jwt){
+            alert("ログインしてください");
+            navigate("/signin")
+        }
+    })
+
     return(
         <main className="books">
             {jwt ? 
             <div className="books-content">
                 <div className="reviews">
                     {Object.values(results).map((result) => (
-                    <div className="review" key={result.id}>
+                    <article className="review" key={result.id}>
                         <h2 className="review-title">{result.title}</h2>
                         <hr />
                         <div className="review-main">
@@ -65,7 +72,7 @@ export function Books (){
                             <button className="review-footers" onClick={() => {navigate(`/detail/${result.id}`)}}>詳しく</button>
                             {result.isMine &&<button className="review-footers" onClick={() => {navigate(`/edit/${result.id}`,{state:result})}}>編集</button>}
                         </div>
-                    </div>
+                    </article>
                     ))}
                 </div>
                 { offset === -1 ?

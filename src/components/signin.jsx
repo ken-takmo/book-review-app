@@ -1,10 +1,11 @@
-import { replace } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
 import { UseFetch } from "./useFetch";
-import { UserContext } from "./userContext";
-export function Signin(){
+import { IsLogin } from "./IsLogin";
 
+
+export function Signin(){
+    
     const navigate = useNavigate();
     const [emailText,setEmailText] = useState("");
     const [passwordText, setPasswordText] = useState("");
@@ -38,6 +39,7 @@ export function Signin(){
         fetchRes(res, successAction, errorAction, result);
     }
 
+    IsLogin();
     
 
     return(

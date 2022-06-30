@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams} from "react-router-dom";
 import { UseGetBooks } from "./useGetBooks"
+import { IsLogin } from "./IsLogin";
 
 export const Publicbooks = () => {
 
-    const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
     const url = "/?offset=";
     const [params] = useSearchParams();
@@ -54,9 +54,7 @@ export const Publicbooks = () => {
         navigate("/signin");
     }
     
-    if(jwt){
-        navigate("/books")
-    }
+    IsLogin();
 
     return(
         <main>

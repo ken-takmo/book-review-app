@@ -528,6 +528,10 @@ hr{
         align-items: center;
     }
 
+    .login-menus * {
+        font-size: 3vw;
+    }
+
     .material-symbols-outlined.md-40 {
         font-size: 20px;
     }
@@ -551,6 +555,10 @@ hr{
 
     .edit-forms textarea, .newbook-content textarea {
         width: 80vw;
+    }
+
+    .search-books label {
+        font-size: 3vw;
     }
 
     .detail-footer{
