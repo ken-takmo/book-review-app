@@ -1,12 +1,25 @@
-import {  useContext } from "react";
+import {  useContext, useEffect } from "react";
 import { Link,useNavigate, } from "react-router-dom";
 import { UserNameContext } from "./UserNameContext";
+import { useFetch } from "./useFetch";
 
 export const Header = () => {
 
     const navigate = useNavigate();
     const jwt = localStorage.getItem("jwt");
-    const userName = useContext(UserNameContext);
+    const {fetchdata} = useFetch();
+    const {userName, setUserName} = useContext(UserNameContext);
+
+    useEffect(() => {
+        const isLoginHeader = async() => {
+            if(jwt){
+                const res = await fetchdata("/users","GET", {"Authorization": `Bearer ${jwt}`});
+                const result = await res.json();
+                setUserName(Object.values(result));
+            }
+        }
+        isLoginHeader();
+    },[jwt]);
 
     const signout = () => {
         localStorage.removeItem("jwt");
@@ -21,7 +34,7 @@ export const Header = () => {
                 <h1 className="app-name">書籍レビューアプリ</h1>
                 <div className="login-menus">
                     <div className="userinfo">
-                        <div className="username">ユーザーネーム: <span className="name">{userName.userName}</span></div> 
+                        <div className="username">ユーザーネーム: <span className="name">{userName}</span></div> 
                         <span className="material-symbols-outlined md-40" onClick={signout}>logout</span>
                     </div>
                     <nav className="links">
