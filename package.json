@@ -21,7 +21,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://ken-takmo.github.io/mission-react/",
+  "homepage": "https://localhost:3000",
   "eslintConfig": {
     "extends": [
       "react-app",

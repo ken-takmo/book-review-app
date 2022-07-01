@@ -35,5 +35,5 @@ function App() {
     </div>
   );
 }
-// "https://ken-takmo.github.io/mission-react/"
+
 export default App;
