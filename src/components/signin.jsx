@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
-import { useFetch } from "./useFetch";
-import { IsLogin } from "./isLogin";
+import { useFetch } from "../hooks/useFetch";
+import { IsLogin } from "../hooks/useIsLogin";
 
 
 export function Signin(){
@@ -26,7 +26,7 @@ export function Signin(){
         }
     }
     
-    const onSigninClick = async () => {
+    const handleSignin = async () => {
         const res = await fetchdata("/signin","POST",undefined,body);
         const result = await res.json();
 
@@ -39,7 +39,7 @@ export function Signin(){
         fetchRes(res, successAction, errorAction, result);
     }
 
-    IsLogin();
+    IsLogin("/books");
     
 
     return(
@@ -55,7 +55,7 @@ export function Signin(){
                         <label htmlFor="password">パスワード</label>
                         <input className="" type="text"placeholder="パスワードを入力" onChange={(e) => setPasswordText(e.target.value)}/>
                     </div>
-                    <button onClick={onSigninClick} className="signin-button">ログイン</button>
+                    <button onClick={handleSignin} className="signin-button">ログイン</button>
                 </div>
                 <Link to="/signup" className="signup-link">登録画面へ</Link>
             </div>

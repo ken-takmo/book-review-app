@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useFetch } from "./useFetch";
+import { useFetch } from "../hooks/useFetch";
 export const Newbook = () => {
 
     const jwt = localStorage.getItem("jwt")
@@ -12,7 +12,7 @@ export const Newbook = () => {
     const [detail, setDetail] = useState("");
     const [review, setReview] = useState("");
 
-    const postBook = async() => {
+    const handlePostReview = async() => {
 
         const body = {
             title: title,
@@ -55,7 +55,7 @@ export const Newbook = () => {
                     </div>
                 </div>
                 <div className="newbook-buttons">
-                    <button className="post-book-button" onClick={postBook}>投稿</button>
+                    <button className="post-book-button" onClick={handlePostReview}>投稿</button>
                     <button className="prev-button" onClick={() => {navigate("/books")}}>戻る</button>
                 </div>
             </main>:

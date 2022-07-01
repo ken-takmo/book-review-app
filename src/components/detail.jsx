@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useGetBooks } from "./useGetBooks";
+import { useGetBooks } from "../hooks/useGetBooks";
 
 export const Detail = () => {
 
@@ -11,7 +11,7 @@ export const Detail = () => {
 
     const details = useGetBooks(`/books/${Object.values(params)}`,{"Authorization": `Bearer ${jwt}`});
     
-    const onContentChangeClick = (contentType) => {
+    function handleContentChange(contentType){
         setContent(contentType);
     }
     
@@ -24,8 +24,8 @@ export const Detail = () => {
                 </div>
                 <div className="detail-main">
                     <div className="detail-main-button">
-                        <button className={content === "detail" ? "selected" : "not-selected"} onClick={() => onContentChangeClick("detail")}>書籍内容</button>
-                        <button className={content === "review" ? "selected" : "not-selected"} onClick={() => onContentChangeClick("review")}>レビュー</button>
+                        <button className={content === "detail" ? "selected" : "not-selected"} onClick={() => handleContentChange("detail")}>書籍内容</button>
+                        <button className={content === "review" ? "selected" : "not-selected"} onClick={() => handleContentChange("review")}>レビュー</button>
                     </div>
                     {content === "detail" ?
                     <div className="is-detail">

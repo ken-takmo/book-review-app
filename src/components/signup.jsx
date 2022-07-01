@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import { useFetch } from "./useFetch";
+import { useFetch } from "../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
-import { IsLogin } from "./isLogin";
+import { IsLogin } from "../hooks/useIsLogin";
 
 export function SignUp(){
 
@@ -29,7 +29,7 @@ export function SignUp(){
         }
     }
 
-    const onSignupClick = async() => {
+    const handleSignup = async() => {
         const res = await fetchdata("/users", "POST", undefined, body)
         const result = await res.json()
 
@@ -60,7 +60,7 @@ export function SignUp(){
                         <label htmlFor='password'>パスワード</label>
                         <input type="text" placeholder="パスワードを入力" onChange={(e) => {setPassword(e.target.value)}} />
                     </div>
-                    <button className="signup-button" type="submit" onClick={onSignupClick}>登録</button>
+                    <button className="signup-button" type="submit" onClick={handleSignup}>登録</button>
                 </div>
                 <Link to="/signin" className="signin-link">ログイン画面へ</Link>
             </div>

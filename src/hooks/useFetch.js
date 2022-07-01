@@ -2,12 +2,16 @@ export const useFetch = () => {
 
     const fetchdata = async(url,method,headers,body) =>{
         const baseUrl = "https://api-for-missions-and-railways.herokuapp.com"
-        const res = await fetch(baseUrl + url,{
-                method: method,
-                headers: headers,
-                body: JSON.stringify(body)
-            })
-        return res;
+        try{
+            const res = await fetch(baseUrl + url,{
+                    method: method,
+                    headers: headers,
+                    body: JSON.stringify(body)
+                })
+            return res;
+        }catch(error){
+            alert("サーバー側でエラーが起きました。時間を置いてからもう一度お試しください。");
+        }
     }
 
     const fetchRes = (res,successAction, error400_403Action,result) => {

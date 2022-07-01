@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams} from "react-router-dom";
-import { useGetBooks } from "./useGetBooks"
-import { IsLogin } from "./isLogin";
+import { useGetBooks } from "../hooks/useGetBooks"
+import { IsLogin } from "../hooks/useIsLogin";
 
 export const Publicbooks = () => {
 
@@ -13,7 +13,7 @@ export const Publicbooks = () => {
 
     const results = useGetBooks(`/public/books?offset=${offset}`);
     
-    const onNextBooksChange = () => {
+    const handleNextBooks = () => {
         if(offset === -1) {
             setOffset(offset + 11);
             navigate(`${url}${offset + 12}`);
@@ -24,7 +24,7 @@ export const Publicbooks = () => {
         window.scrollTo(0, 0);
     }
     
-    const onPrevBooksChange = () => {
+    const handlePrevBooks = () => {
         if(0 < offset && offset <= 10) {
             setOffset(-1)
             navigate("/")
@@ -38,7 +38,7 @@ export const Publicbooks = () => {
         }
     }
     
-    const searchBook = () => {
+    const handleSearchBook = () => {
         if(String(searchNumber).match(/^\d+$/)){
             setOffset(searchNumber -1);
             navigate(`${url}${searchNumber}`);
@@ -80,14 +80,14 @@ export const Publicbooks = () => {
                 <p className="current-page">{offset + 1} 〜 {offset + 10}件目を表示</p>
                 }
                 <div className="change-books">
-                    <button className="prev-books-button" onClick={onPrevBooksChange}>前の10件を表示</button>
-                    <button className="next-books-button" onClick={onNextBooksChange}>次の10件を表示</button>
+                    <button className="prev-books-button" onClick={handlePrevBooks}>前の10件を表示</button>
+                    <button className="next-books-button" onClick={handleNextBooks}>次の10件を表示</button>
                 </div>
                 <div className="search-books">
                     <label htmlFor="search">何件目から表示しますか</label>
                     <input type="text" placeholder="半角数字を入力" value={searchNumber} onChange={(e) => {setSearchNumber(e.target.value)}}/>
                     <p>件目</p>
-                    <button onClick={searchBook}>表示</button>
+                    <button onClick={handleSearchBook}>表示</button>
                 </div>
             </div>
         </main>

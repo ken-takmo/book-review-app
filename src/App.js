@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { SignUp } from "./components/Signup";
 import { Signin } from "./components/Signin";
@@ -11,13 +11,17 @@ import { Publicbooks } from "./components/Publicbooks";
 import { Header } from "./components/Header";
 import { Sample } from "./components/sampleSearchUserBooks";
 import { UserNameProvider } from "./components/UserNameContext";
+import { LoadingProvider } from "./components/Loading";
+import { useAuth } from "./components/AuthContext";
 
 function App() {
+  // const {isAuth} = useAuth();
 
   return (
     <div className="App">
       <BrowserRouter>
         <UserNameProvider>
+        <LoadingProvider>
           <Header/>
           <Routes>
             <Route path="/" element={<Publicbooks/>}/>
@@ -30,6 +34,7 @@ function App() {
             <Route path="/new" element={<Newbook />}/>
             <Route path="/sample" element={<Sample/>} />
           </Routes>      
+          </LoadingProvider>
         </UserNameProvider>
       </BrowserRouter>
     </div>

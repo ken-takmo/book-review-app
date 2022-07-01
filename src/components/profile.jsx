@@ -1,6 +1,6 @@
 import { useState, useContext} from "react"
 import { useNavigate, Link} from "react-router-dom";
-import { useFetch } from "./useFetch";
+import { useFetch } from "../hooks/useFetch";
 import { UserNameContext } from "./UserNameContext";
 export const Profile = () => {
     
@@ -10,7 +10,7 @@ export const Profile = () => {
     const {userName, setUserName} = useContext(UserNameContext);
     const [newName, setNewName] = useState(userName);
     
-    const newProfile = async() => {
+    const handleEditProfile = async() => {
 
         const body = {
             name:newName
@@ -39,7 +39,7 @@ export const Profile = () => {
                     <input type="text" id="newName" value={newName} onChange={e => setNewName(e.target.value)}/>
                 </div>
                 <div className="profile-buttons">
-                    <button className="update-button" onClick={newProfile}>変更</button>
+                    <button className="update-button" onClick={handleEditProfile}>変更</button>
                     <button className="prev-button" onClick={() => {navigate("/books")}}>戻る</button>
                 </div>
             </main>:

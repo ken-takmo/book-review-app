@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams , useLocation, Link} from "react-router-dom";
-import { useFetch } from "./useFetch";
+import { useFetch } from "../hooks/useFetch";
 
 export const Edit = () => {
 
@@ -20,7 +20,7 @@ export const Edit = () => {
     
     
 
-    const editBooks = async () => {
+    const handleUpdateBook = async () => {
         
         const body = {
             title: titleText,
@@ -40,7 +40,7 @@ export const Edit = () => {
         fetchRes(res,updateSuccessAction,result);
     }
 
-    const deleteBooks = async () => {
+    const handleDeleteReview = async () => {
         const res = await fetchdata(`/books/${Object.values(params)}`,"DELETE",{"Authorization": `Bearer ${jwt}`},)
 
         const deleteSuccessAction = () => {
@@ -75,8 +75,8 @@ export const Edit = () => {
                     </div>
                 </div>
                 <div className="edit-buttons">
-                    <button className="repost-review-button" onClick={editBooks}>更新</button>
-                    <button className="delete-review-button" onClick={deleteBooks}>削除</button>
+                    <button className="repost-review-button" onClick={handleUpdateBook}>更新</button>
+                    <button className="delete-review-button" onClick={handleDeleteReview}>削除</button>
                     <button className="prev-button" onClick={()=> {navigate("/books")}}>戻る</button>
                 </div>
             </main>:
