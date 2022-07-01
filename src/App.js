@@ -10,16 +10,14 @@ import { Edit } from "./components/Edit";
 import { Publicbooks } from "./components/Publicbooks";
 import { Header } from "./components/Header";
 import { Sample } from "./components/sampleSearchUserBooks";
-import { userContext } from "./components/userContext";
+import { UserNameProvider } from "./components/UserNameContext";
 
 function App() {
-
-  const [userName, setUserName] = useState("");
 
   return (
     <div className="App">
       <BrowserRouter>
-        <userContext.Provider value={{userName, setUserName}}>
+        <UserNameProvider>
           <Header/>
           <Routes>
             <Route path="/" element={<Publicbooks/>}/>
@@ -32,7 +30,7 @@ function App() {
             <Route path="/new" element={<Newbook />}/>
             <Route path="/sample" element={<Sample/>} />
           </Routes>      
-        </userContext.Provider>
+        </UserNameProvider>
       </BrowserRouter>
     </div>
   );

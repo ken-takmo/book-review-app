@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useFetch } from "./useFetch";
 import { Link, useNavigate } from "react-router-dom";
-import { IsLogin } from "./IsLogin";
+import { IsLogin } from "./isLogin";
 
 export function SignUp(){
 
