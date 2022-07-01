@@ -1,13 +1,13 @@
 import { useState, useContext} from "react"
 import { useNavigate, Link} from "react-router-dom";
-import { UseFetch } from "./useFetch";
-import { UserContext } from "./userContext";
+import { useFetch } from "./useFetch";
+import { userContext } from "./userContext";
 export const Profile = () => {
     
     const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
-    const {fetchdata,fetchRes} = UseFetch();
-    const {userName, setUserName} = useContext(UserContext);
+    const {fetchdata,fetchRes} = useFetch();
+    const {userName, setUserName} = useContext(userContext);
     const [newName, setNewName] = useState(userName);
     
     const newProfile = async() => {

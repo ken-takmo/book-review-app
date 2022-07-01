@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
-import { UseGetBooks } from "./useGetBooks";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { useGetBooks } from "./useGetBooks";
 
 export const Detail = () => {
 
@@ -9,7 +9,7 @@ export const Detail = () => {
     const jwt = localStorage.getItem("jwt");
     const [content, setContent] = useState("detail");
 
-    const details = UseGetBooks(`/books/${Object.values(params)}`,{"Authorization": `Bearer ${jwt}`});
+    const details = useGetBooks(`/books/${Object.values(params)}`,{"Authorization": `Bearer ${jwt}`});
     
     const onContentChangeClick = (contentType) => {
         setContent(contentType);

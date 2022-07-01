@@ -1,14 +1,14 @@
 import {  useContext, useEffect, } from "react";
 import { Link,useNavigate, } from "react-router-dom";
-import { UseFetch } from "./useFetch";
-import { UserContext } from "./userContext";
+import { useFetch } from "./useFetch";
+import { userContext } from "./userContext";
 
 export const Header = () => {
 
     const navigate = useNavigate();
     const jwt = localStorage.getItem("jwt");
-    const {fetchdata} = UseFetch();
-    const {userName, setUserName} = useContext(UserContext);
+    const {fetchdata} = useFetch();
+    const {userName, setUserName} = useContext(userContext);
 
     useEffect(() => {
         const isLoginHeader = async() => {

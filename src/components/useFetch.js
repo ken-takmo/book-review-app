@@ -1,4 +1,4 @@
-export const UseFetch = () => {
+export const useFetch = () => {
 
     const fetchdata = async(url,method,headers,body) =>{
         const baseUrl = "https://api-for-missions-and-railways.herokuapp.com"

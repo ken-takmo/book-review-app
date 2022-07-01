@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { UseGetBooks } from "./useGetBooks";
+import { useGetBooks } from "./useGetBooks";
 export function Books (){
 
     const jwt = localStorage.getItem('jwt');
@@ -10,7 +10,7 @@ export function Books (){
     const [searchParams, setSearchParams] = useState(1);
     const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) -1);
 
-    const results = UseGetBooks(`/books?offset=${offset}`,{"Authorization": `Bearer ${jwt}`});
+    const results = useGetBooks(`/books?offset=${offset}`,{"Authorization": `Bearer ${jwt}`});
     
     const onNextBooksChange = () => {
         if(offset === -1) {

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { UseFetch } from "./useFetch"
+import { useFetch } from "./useFetch"
 
 export const Sample = () => {
 
-    const {fetchdata,fetchRes} = UseFetch();
+    const {fetchdata,fetchRes} = useFetch();
 
     const [userBooks, setUserBooks] = useState({});
     const results = [];

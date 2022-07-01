@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { SignUp } from "./components/signup";
-import { Signin } from "./components/signin";
-import { Books } from "./components/books";
-import { Profile } from "./components/profile";
-import { Newbook } from "./components/newbook";
-import { Detail } from "./components/detail";
-import { Edit } from "./components/edit";
-import { Publicbooks } from "./components/publicbooks";
-import { Header } from "./components/header";
+import { SignUp } from "./components/Signup";
+import { Signin } from "./components/Signin";
+import { Books } from "./components/Books";
+import { Profile } from "./components/Profile";
+import { Newbook } from "./components/Newbook";
+import { Detail } from "./components/Detail";
+import { Edit } from "./components/Edit";
+import { Publicbooks } from "./components/Publicbooks";
+import { Header } from "./components/Header";
 import { Sample } from "./components/sampleSearchUserBooks";
-import { UserContext } from "./components/userContext";
+import { userContext } from "./components/userContext";
 
 function App() {
 
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContext.Provider value={{userName, setUserName}}>
+        <userContext.Provider value={{userName, setUserName}}>
           <Header/>
           <Routes>
             <Route path="/" element={<Publicbooks/>}/>
@@ -32,7 +32,7 @@ function App() {
             <Route path="/new" element={<Newbook />}/>
             <Route path="/sample" element={<Sample/>} />
           </Routes>      
-        </UserContext.Provider>
+        </userContext.Provider>
       </BrowserRouter>
     </div>
   );

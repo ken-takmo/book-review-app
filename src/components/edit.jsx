@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate, useParams , useLocation, Link} from "react-router-dom";
-import { UseFetch } from "./useFetch";
+import { useFetch } from "./useFetch";
 export const Edit = () => {
 
     const jwt = localStorage.getItem("jwt");
     const params = useParams();
     const navigate = useNavigate();
-    const {fetchdata,fetchRes} = UseFetch();
+    const {fetchdata,fetchRes} = useFetch();
     
     // 本の詳細
     const location = useLocation();

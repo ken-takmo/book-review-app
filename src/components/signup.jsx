@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
-import { UseFetch } from "./useFetch";
+import { useFetch } from "./useFetch";
 import { Link, useNavigate } from "react-router-dom";
 import { IsLogin } from "./IsLogin";
 
 export function SignUp(){
 
     const navigate = useNavigate();
-    const {fetchdata,fetchRes} = UseFetch();
+    const {fetchdata,fetchRes} = useFetch();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

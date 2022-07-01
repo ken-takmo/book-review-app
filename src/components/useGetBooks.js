@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-export const UseGetBooks = (url,headers) => {
+export const useGetBooks = (url,headers) => {
     const baseUrl = "https://api-for-missions-and-railways.herokuapp.com"
     const [result, setResurt] = useState({});
    

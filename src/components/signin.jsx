@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, } from "react-router-dom";
-import { UseFetch } from "./useFetch";
+import { useFetch } from "./useFetch";
 import { IsLogin } from "./IsLogin";
 
 
@@ -9,7 +9,7 @@ export function Signin(){
     const navigate = useNavigate();
     const [emailText,setEmailText] = useState("");
     const [passwordText, setPasswordText] = useState("");
-    const {fetchdata,fetchRes} = UseFetch();
+    const {fetchdata,fetchRes} = useFetch();
     
     const body = {
         email: emailText,

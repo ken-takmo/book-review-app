@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useSearchParams} from "react-router-dom";
-import { UseGetBooks } from "./useGetBooks"
+import { useGetBooks } from "./useGetBooks"
 import { IsLogin } from "./IsLogin";
 
 export const Publicbooks = () => {
@@ -11,7 +11,7 @@ export const Publicbooks = () => {
     const [searchNumber, setSearchNumber] = useState(1);
     const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) -1);
 
-    const results = UseGetBooks(`/public/books?offset=${offset}`);
+    const results = useGetBooks(`/public/books?offset=${offset}`);
     
     const onNextBooksChange = () => {
         if(offset === -1) {

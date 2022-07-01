@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { UseFetch } from "./useFetch";
+import { useFetch } from "./useFetch";
 export const Newbook = () => {
 
     const jwt = localStorage.getItem("jwt")
     const navigate = useNavigate();
-    const {fetchdata,fetchRes} = UseFetch();
+    const {fetchdata,fetchRes} = useFetch();
 
     const [title, setTitle] = useState("");
     const [url, setUrl] = useState("");
