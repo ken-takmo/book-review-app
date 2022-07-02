@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes, useOutletContext } from 'react-router-dom';
 import { SignUp } from "./components/Signup";
 import { Signin } from "./components/Signin";
 import { Books } from "./components/Books";
@@ -12,10 +12,22 @@ import { Header } from "./components/Header";
 import { Sample } from "./components/sampleSearchUserBooks";
 import { UserNameProvider } from "./components/UserNameContext";
 import { LoadingProvider } from "./components/Loading";
-import { useAuth } from "./components/AuthContext";
+import { AuthContext, AuthProvider, useAuth } from "./components/AuthContext";
 
 function App() {
-  // const {isAuth} = useAuth();
+
+  // const [isAuth, setIsAuth] = useState(false);
+
+  // useEffect(() => {
+  //   const jwt = useAuth();
+  //   if(jwt){
+  //     setIsAuth(true);
+  //   }else{
+  //     setIsAuth(false);
+  //   }
+  // },[]);
+  const {isAuth, setIsAuth} = useAuth();
+  // console.log(isAuth);
 
   return (
     <div className="App">
@@ -24,14 +36,14 @@ function App() {
         <LoadingProvider>
           <Header/>
           <Routes>
-            <Route path="/" element={<Publicbooks/>}/>
-            <Route path="/books" element={<Books />}/>
-            <Route path="/detail/:id" element={<Detail />}/>
-            <Route path="/edit/:id" element={<Edit />} />
-            <Route path="/signup" element={<SignUp/>} />
-            <Route path="/signin" element={<Signin/>}/>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/new" element={<Newbook />}/>
+            <Route path="/" element={isAuth ? <Books />:<Publicbooks/>}/>
+            <Route path="/books" element={isAuth ? <Books />: <Signin/>}/>
+            <Route path="/detail/:id" element={isAuth ?<Detail /> : <Signin/>}/>
+            <Route path="/edit/:id" element={isAuth ? <Edit /> : <Signin/>} />
+            <Route path="/signup" element={isAuth ? <Books/> : <SignUp/>} />
+            <Route path="/signin" element={isAuth ? <Books/> : <Signin/>}/>
+            <Route path="/profile" element={isAuth ? <Profile /> : <Signin/>} />
+            <Route path="/new" element={isAuth ? <Newbook /> : <Signin/>}/>
             <Route path="/sample" element={<Sample/>} />
           </Routes>      
           </LoadingProvider>

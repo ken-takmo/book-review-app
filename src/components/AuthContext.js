@@ -1,15 +1,15 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
+import { Outlet } from "react-router-dom";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export const useAuth = () => {
     return useContext(AuthContext);
 }
 
 export const AuthProvider = ({children}) => {
-    const isAuth = () => {
-        const jwt = localStorage.getItem("jwt");
-        return jwt
-    }
-    return <AuthContext.Provider value={isAuth}>{children}</AuthContext.Provider>
+    const jwt = localStorage.getItem("jwt");
+    const [isAuth, setIsAuth] = useState(jwt);
+    // return <AuthContext.Provider value={isAuth}>{children}</AuthContext.Provider>
+    return <AuthContext.Provider value={[isAuth, setIsAuth]}>{children}</AuthContext.Provider>
 }
