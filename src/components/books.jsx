@@ -93,7 +93,7 @@ export const Books = () => {
                     </div>
                     <div className="search-books">
                         <label htmlFor="search">何件目から表示しますか</label>
-                        <input type="text" placeholder="半角数字を入力" onChange={(e) => {setSearchParams(Number(e.target.value))}}></input>
+                        <input type="number" min={1} placeholder="半角数字を入力" onChange={(e) => {setSearchParams(Number(e.target.value))}}></input>
                         <button onClick={handleFindBook}>表示</button>
                     </div>
                 </div>

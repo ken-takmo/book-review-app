@@ -49,7 +49,7 @@ export function Signin(){
                 <div className="signin-forms">
                     <div className="signin-emailform">
                         <label htmlFor="email">メールアドレス</label>
-                        <input type="email" placeholder="メールアドレスを入力" onChange={(e) => setEmailText(e.target.value)}/>
+                        <input type="email" placeholder="メールアドレスを入力" autoFocus onChange={(e) => setEmailText(e.target.value)}/>
                     </div>
                     <div className="signin-passwordform">
                         <label htmlFor="password">パスワード</label>

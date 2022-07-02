@@ -50,7 +50,7 @@ export function SignUp(){
                 <div className="signup-forms">
                     <div className="signup-name">
                         <label htmlFor='name'>ユーザーネーム</label>
-                        <input type="text" placeholder="ユーザーネームを入力" onChange={(e) => {setName(e.target.value)}}/>
+                        <input type="text" placeholder="ユーザーネームを入力" autoFocus onChange={(e) => {setName(e.target.value)}}/>
                     </div>
                     <div className="signup-email">
                         <label htmlFor='email'>メールアドレス</label>
