@@ -12,22 +12,14 @@ import { Header } from "./components/Header";
 import { Sample } from "./components/sampleSearchUserBooks";
 import { UserNameProvider } from "./components/UserNameContext";
 import { LoadingProvider } from "./components/Loading";
-import { AuthContext, AuthProvider, useAuth } from "./components/AuthContext";
+import { useAuth } from "./components/AuthContext";
+import {PrivateRoute} from "./components/PrivateRoute"
+import {RequireAuth} from "./components/RequireAuth"
+import { RequireSignout } from "./components/RequireSignout";
 
 function App() {
 
-  // const [isAuth, setIsAuth] = useState(false);
-
-  // useEffect(() => {
-  //   const jwt = useAuth();
-  //   if(jwt){
-  //     setIsAuth(true);
-  //   }else{
-  //     setIsAuth(false);
-  //   }
-  // },[]);
   const {isAuth, setIsAuth} = useAuth();
-  // console.log(isAuth);
 
   return (
     <div className="App">
@@ -35,17 +27,32 @@ function App() {
         <UserNameProvider>
         <LoadingProvider>
           <Header/>
+          {isAuth?(
           <Routes>
-            <Route path="/" element={isAuth ? <Books />:<Publicbooks/>}/>
-            <Route path="/books" element={isAuth ? <Books />: <Signin/>}/>
-            <Route path="/detail/:id" element={isAuth ?<Detail /> : <Signin/>}/>
-            <Route path="/edit/:id" element={isAuth ? <Edit /> : <Signin/>} />
-            <Route path="/signup" element={isAuth ? <Books/> : <SignUp/>} />
-            <Route path="/signin" element={isAuth ? <Books/> : <Signin/>}/>
-            <Route path="/profile" element={isAuth ? <Profile /> : <Signin/>} />
-            <Route path="/new" element={isAuth ? <Newbook /> : <Signin/>}/>
+            <Route path="/" element={<RequireSignout />}/>
+            <Route path="/signup" element={<RequireSignout /> } />
+            <Route path="/signin" element={<RequireSignout/>}/>
+            <Route path="/books" element={<Books />}/>
+            <Route path="/detail/:id" element={<Detail />}/>
+            <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/new" element={<Newbook />}/>
             <Route path="/sample" element={<Sample/>} />
-          </Routes>      
+          </Routes>
+          ):(
+          <Routes>
+            <Route path="/" element={<Publicbooks />}/>
+            <Route path="/signup" element={<SignUp/> } />
+            <Route path="/signin" element={<Signin/>}/>
+            <Route path="/books" element={<RequireAuth />}/>
+            <Route path="/detail/:id" element={<RequireAuth />}/>
+            <Route path="/edit/:id" element={<RequireAuth />} />
+            <Route path="/profile" element={<RequireAuth />} />
+            <Route path="/new" element={<RequireAuth />}/>
+            <Route path="/sample" element={<Sample/>} />
+          </Routes>
+          )
+          }
           </LoadingProvider>
         </UserNameProvider>
       </BrowserRouter>

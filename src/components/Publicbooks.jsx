@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, useSearchParams} from "react-router-dom";
 import { useGetBooks } from "../hooks/useGetBooks"
 import { IsLogin } from "../hooks/useIsLogin";
+import { LoadingContext } from "./Loading";
 
 export const Publicbooks = () => {
 
     const navigate = useNavigate();
     const url = "/?offset=";
+    const {loading, setLoading} = useContext(LoadingContext);
     const [params] = useSearchParams();
     const [searchNumber, setSearchNumber] = useState(1);
     const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) -1);
@@ -57,9 +59,14 @@ export const Publicbooks = () => {
     IsLogin("/books");
 
     return(
-        <main>
-            <p>ログインするとレビューの投稿、レビューの詳細閲覧ができます</p>
-            <div className="books-content">
+        <main className="public-books">
+            {!loading ?( 
+                <div className="public-books-content">
+                    <h1>読み込み中</h1>
+                </div>
+            ):(
+            <div className="public-books-content">
+                <p>ログインするとレビューの投稿、レビューの詳細閲覧ができます</p>
                 <div className="reviews">
                     {Object.values(results).map((result) => (
                     <div className="review" key={result.id}>
@@ -90,6 +97,7 @@ export const Publicbooks = () => {
                     <button onClick={handleSearchBook}>表示</button>
                 </div>
             </div>
+            )}
         </main>
     )
 }

@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams,} from "react-router-dom";
 import { useGetBooks } from "../hooks/useGetBooks";
 import { LoadingContext } from "./Loading";
 export const Books = () => {
 
     const jwt = localStorage.getItem('jwt');
     const navigate = useNavigate();
-    const url = "/books?offset=";
+    const baseurl = "/books?offset=";
     const {loading, setLoading} = useContext(LoadingContext);
     const [params] = useSearchParams();
     const [searchParams, setSearchParams] = useState(1);
@@ -17,10 +17,10 @@ export const Books = () => {
     const handleNextBooks = () => {
         if(offset === -1) {
             setOffset(offset + 11);
-            navigate(`${url}${offset + 12}`);
+            navigate(`${baseurl}${offset + 12}`);
         }else{
             setOffset(offset + 10)
-            navigate(`${url}${offset + 11}`);
+            navigate(`${baseurl}${offset + 11}`);
         }
         window.scrollTo(0, 0);
     }
@@ -30,11 +30,11 @@ export const Books = () => {
             setOffset(-1)
             navigate("/books")
             window.scrollTo(0, 0);
-        }else if(offset === -1){
+        }else if(offset <= 0 ){
             alert("最新のレビューです")
         }else{
             setOffset(offset - 10)
-            navigate(`${url}${offset - 9}`);
+            navigate(`${baseurl}${offset - 9}`);
             window.scrollTo(0, 0);
         }
     }
@@ -42,7 +42,7 @@ export const Books = () => {
     const handleFindBook = () => {
         if(String(searchParams).match(/^\d+$/)){
             setOffset(searchParams -1);
-            navigate(`${url}${searchParams}`);
+            navigate(`${baseurl}${searchParams}`);
             window.scrollTo(0, 0);
             setSearchParams("");
         }else{
@@ -50,21 +50,13 @@ export const Books = () => {
         }
     }
 
-    // useEffect(() => {
-    //     if(!jwt){
-    //         alert("ログインしてください");
-    //         navigate("/signin")
-    //     }
-    // })
-
     return(
         <main className="books">
-            {!loading && 
+            {!loading ?( 
                 <div className="books-content">
                     <h1>読み込み中</h1>
                 </div>
-            }
-            {jwt  ?(
+            ):(jwt  ?(
                 <div className="books-content">
                     <div className="reviews">
                         {Object.values(results).map((result) => (
@@ -101,7 +93,7 @@ export const Books = () => {
                 <div className="books-content">
                     <Link to="/signin">ログインしてください</Link>
                 </div>
-            )}
+            ))}
         </main>
     )
 }

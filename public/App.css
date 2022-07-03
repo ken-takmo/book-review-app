@@ -259,6 +259,10 @@ li {
 .next-books-button{
     margin-left: 5vw;
 }
+
+.public-books-content > p {
+    text-align: center;
+}
 /* 詳細コンポーネント */
 /* .detail{
 } */

@@ -77,7 +77,7 @@ export const Edit = () => {
                 <div className="edit-buttons">
                     <button className="repost-review-button" onClick={handleUpdateBook}>更新</button>
                     <button className="delete-review-button" onClick={handleDeleteReview}>削除</button>
-                    <button className="prev-button" onClick={()=> {navigate("/books")}}>戻る</button>
+                    <button className="prev-button" onClick={()=> {navigate(-1)}}>戻る</button>
                 </div>
             </main>:
             <main className="books-content">
