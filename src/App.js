@@ -13,7 +13,6 @@ import { Sample } from "./components/sampleSearchUserBooks";
 import { UserNameProvider } from "./components/UserNameContext";
 import { LoadingProvider } from "./components/Loading";
 import { useAuth } from "./components/AuthContext";
-import {PrivateRoute} from "./components/PrivateRoute"
 import {RequireAuth} from "./components/RequireAuth"
 import { RequireSignout } from "./components/RequireSignout";
 

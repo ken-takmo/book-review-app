@@ -1,54 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams , useLocation, Link} from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import { useReview } from "../hooks/useReview";
 
 export const Edit = () => {
 
     const jwt = localStorage.getItem("jwt");
     const params = useParams();
     const navigate = useNavigate();
-    const {fetchdata,fetchRes} = useFetch();
+    const reviewID = params.id;
+    const {review, updateReview, deleteReview} = useReview(reviewID, jwt);
+
+    const [titleText, setTitleText] = useState(review.title);
+    const [urlText, setUrlText] = useState(review.url);
+    const [detailText, setDetailText] = useState(review.detail);
+    const [reviewText, setReviewText] = useState(review.review);
+
+    useEffect(() => {
+        setTitleText(review.title);
+        setUrlText(review.url);
+        setDetailText(review.detail);
+        setReviewText(review.review)
+    },[review])
     
-    // 本の詳細
-    const location = useLocation();
-    const bookData = location.state;
-
-    const [titleText, setTitleText] = useState(bookData.title);
-    const [urlText, setUrlText] = useState(bookData.url);
-    const [detailText, setDetailText] = useState(bookData.detail);
-    const [reviewText, setReviewText] = useState(bookData.review);
-    
-    
-
-    const handleUpdateBook = async () => {
-        
-        const body = {
-            title: titleText,
-            url: urlText,
-            detail: detailText,
-            review: reviewText,
-        }
-
-        const res = await fetchdata(`/books/${Object.values(params)}`,"PUT",{'Authorization': `Bearer ${jwt}`},body);
-        const result = await res.json();
-
-        const updateSuccessAction = () => {
-            alert("レビュー内容が変更されました");
-            navigate("/books");
-        }
-
-        fetchRes(res,updateSuccessAction,result);
+  
+    const body = {
+        title: titleText,
+        url: urlText,
+        detail: detailText,
+        review: reviewText,
     }
 
-    const handleDeleteReview = async () => {
-        const res = await fetchdata(`/books/${Object.values(params)}`,"DELETE",{"Authorization": `Bearer ${jwt}`},)
+    const handleUpdateBook = () => {
+        updateReview(body);
+    }
 
-        const deleteSuccessAction = () => {
-            alert("削除されました");
-            navigate("/books");
-        }
-
-        fetchRes(res,deleteSuccessAction);
+    const handleDeleteReview = () => {
+        deleteReview();
     }
 
 

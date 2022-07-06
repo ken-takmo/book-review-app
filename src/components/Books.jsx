@@ -14,6 +14,7 @@ export const Books = () => {
 
     const results = useGetBooks(`/books?offset=${offset}`,{"Authorization": `Bearer ${jwt}`});
     
+
     const handleNextBooks = () => {
         if(offset === -1) {
             setOffset(offset + 11);

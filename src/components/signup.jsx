@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useFetch } from "../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
-import { IsLogin } from "../hooks/useIsLogin";
 
 export function SignUp(){
 
@@ -40,8 +39,6 @@ export function SignUp(){
 
         fetchRes(res, successAction, errorAction, result);
     }
-
-    IsLogin();
     
     return(
         <main className="signup">

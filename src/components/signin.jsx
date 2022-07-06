@@ -1,17 +1,18 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate, } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import { IsLogin } from "../hooks/useIsLogin";
 import { useAuth } from "./AuthContext";
 
 
 export function Signin(){
     
+    const location = useLocation();
     const {isAuth, setIsAuth} = useAuth();
     const navigate = useNavigate();
     const [emailText,setEmailText] = useState("");
     const [passwordText, setPasswordText] = useState("");
     const {fetchdata,fetchRes} = useFetch();
+    const from = location.state?.from?.pathname || "/books";
     
     const body = {
         email: emailText,
@@ -34,16 +35,13 @@ export function Signin(){
 
         const successAction = () => {
             localStorage.setItem('jwt',result.token);
-            alert("ログインに成功しました！！！！書籍レビュー画面に移動します。");
+            alert("ログインに成功しました！！！！");
             setIsAuth(true);
-            navigate("/books",{replace: true})
+            navigate(from);
         }
 
         fetchRes(res, successAction, errorAction, result);
     }
-
-    // IsLogin("/books");
-    
 
     return(
         <main className="signin">

@@ -1,14 +1,18 @@
 import {  useContext, useEffect } from "react";
-import { Link,useNavigate, } from "react-router-dom";
+import { Link,useNavigate, useLocation } from "react-router-dom";
 import { UserNameContext } from "./UserNameContext";
 import { useFetch } from "../hooks/useFetch";
+import { useAuth } from "./AuthContext";
 
 export const Header = () => {
 
     const navigate = useNavigate();
+    const {isAuth, setIsAuth} = useAuth();
     const jwt = localStorage.getItem("jwt");
     const {fetchdata} = useFetch();
     const {userName, setUserName} = useContext(UserNameContext);
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/signin";
 
     useEffect(() => {
         const isLoginHeader = async() => {
@@ -24,7 +28,8 @@ export const Header = () => {
     const signout = () => {
         localStorage.removeItem("jwt");
         alert("ログアウトしました");
-        navigate("/signin")
+        setIsAuth(false);
+        navigate(from)
     }
     
     return(

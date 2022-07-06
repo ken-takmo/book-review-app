@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate, useSearchParams} from "react-router-dom";
 import { useGetBooks } from "../hooks/useGetBooks"
-import { IsLogin } from "../hooks/useIsLogin";
 import { LoadingContext } from "./Loading";
 
 export const Publicbooks = () => {
@@ -55,8 +54,6 @@ export const Publicbooks = () => {
         alert("ログイン後、レビューの詳細をご覧になれます");
         navigate("/signin");
     }
-    
-    IsLogin("/books");
 
     return(
         <main className="public-books">
