@@ -1,9 +1,8 @@
-import { useLocation, Navigate, } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 
-export const  RequireAuth = () => {
+export const RequireAuth = () => {
+  const location = useLocation();
 
-    const location = useLocation();
-  
-    alert("ログイン後にご利用になれます。")
-    return <Navigate to="/signin" state={{ from: location }} />;
-}
+  alert("ログイン後にご利用になれます。");
+  return <Navigate to="/signin" state={{ from: location }} />;
+};
