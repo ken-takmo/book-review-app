@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useGetBooks } from "../hooks/useGetBooks";
-import { LoadingContext } from "./Loading";
+import { LoadingContext } from "../context/Loading";
 export const Books = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ export const Books = () => {
                     <button
                       className="review-footers"
                       onClick={() => {
-                        navigate(`/edit/${result.id}`, { state: result });
+                        navigate(`/edit/${result.id}`);
                       }}
                     >
                       編集

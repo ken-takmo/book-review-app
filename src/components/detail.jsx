@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useGetBooks } from "../hooks/useGetBooks";
+import { useReview } from "../hooks/useReview";
 
 export const Detail = () => {
-  const params = useParams({});
   const navigate = useNavigate();
+  const params = useParams({});
+  const reviewID = params.id;
   const jwt = localStorage.getItem("jwt");
   const [content, setContent] = useState("detail");
-
-  const details = useGetBooks(`/books/${Object.values(params)}`, {
-    Authorization: `Bearer ${jwt}`,
-  });
+  const { review } = useReview(reviewID, jwt);
 
   function handleContentChange(contentType) {
     setContent(contentType);
@@ -21,7 +19,7 @@ export const Detail = () => {
       {jwt ? (
         <div className="detail-content">
           <div className="detail-header">
-            <h2 className="detail-title">{details.title}</h2>
+            <h2 className="detail-title">{review.title}</h2>
           </div>
           <div className="detail-main">
             <div className="detail-main-button">
@@ -42,24 +40,24 @@ export const Detail = () => {
               <div className="is-detail">
                 <h3>書籍内容</h3>
                 <hr />
-                <p>{details.detail}</p>
+                <p>{review.detail}</p>
               </div>
             ) : (
               <div className="is-review">
                 <h3>レビュー</h3>
                 <hr />
-                <p>{details.review}</p>
+                <p>{review.review}</p>
               </div>
             )}
           </div>
           <div className="detail-footer">
             <div className="author">
-              <p>投稿者 : {details.reviewer}</p>
-              {details.isMine && <p>あなたの投稿です</p>}
+              <p>投稿者 : {review.reviewer}</p>
+              {review.isMine && <p>あなたの投稿です</p>}
             </div>
             <div className="footer-links">
               <nav className="detail-url">
-                <a target="_blank" href={details.url}>
+                <a target="_blank" href={review.url}>
                   この書籍の参照リンク
                 </a>
               </nav>

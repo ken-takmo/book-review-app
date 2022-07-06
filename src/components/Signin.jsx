@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 export function Signin() {
   const location = useLocation();

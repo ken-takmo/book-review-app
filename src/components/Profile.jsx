@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import { UserNameContext } from "./UserNameContext";
+import { UserNameContext } from "../context/UserNameContext";
 export const Profile = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();

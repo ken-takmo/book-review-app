@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { UserNameContext } from "./UserNameContext";
+import { UserNameContext } from "../context/UserNameContext";
 import { useFetch } from "../hooks/useFetch";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 export const Header = () => {
   const navigate = useNavigate();
