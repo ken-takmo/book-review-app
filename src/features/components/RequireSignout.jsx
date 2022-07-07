@@ -1,4 +1,4 @@
-import { useLocation, Navigate, useParams } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 
 export const RequireSignout = () => {
   const location = useLocation();

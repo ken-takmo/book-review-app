@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useGetBooks } from "../hooks/useGetBooks";
-import { LoadingContext } from "../context/Loading";
+import { LoadingContext } from "../providers/Loading";
 export const Books = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
@@ -10,6 +10,8 @@ export const Books = () => {
   const [params] = useSearchParams();
   const [searchParams, setSearchParams] = useState(1);
   const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) - 1);
+
+  // console.log(jwt);
 
   const results = useGetBooks(`/books?offset=${offset}`, {
     Authorization: `Bearer ${jwt}`,

@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../providers/AuthContext";
 
 export function Signin() {
   const location = useLocation();
@@ -9,7 +9,7 @@ export function Signin() {
   const navigate = useNavigate();
   const [emailText, setEmailText] = useState("");
   const [passwordText, setPasswordText] = useState("");
-  const { fetchdata, fetchRes } = useFetch();
+  const { fetchData, fetchRes } = useFetch();
   const from = location.state?.from?.pathname || "/books";
 
   const body = {
@@ -28,7 +28,7 @@ export function Signin() {
   };
 
   const handleSignin = async () => {
-    const res = await fetchdata("/signin", "POST", undefined, body);
+    const res = await fetchData("/signin", "POST", undefined, body);
     const result = await res.json();
 
     const successAction = () => {

@@ -4,7 +4,7 @@ import { useFetch } from "./useFetch";
 
 export const useReview = (reviewID, jwt) => {
   const navigate = useNavigate();
-  const { fetchdata, fetchRes } = useFetch();
+  const { fetchData, fetchRes } = useFetch();
   const [review, setReview] = useState({
     title: "",
     url: "",
@@ -14,7 +14,7 @@ export const useReview = (reviewID, jwt) => {
 
   useEffect(() => {
     const getReview = async () => {
-      const res = await fetchdata(`/books/${reviewID}`, "GET", {
+      const res = await fetchData(`/books/${reviewID}`, "GET", {
         Authorization: `Bearer ${jwt}`,
       });
       const result = await res.json();
@@ -24,7 +24,7 @@ export const useReview = (reviewID, jwt) => {
   }, [reviewID]);
 
   const updateReview = async (body) => {
-    const res = await fetchdata(
+    const res = await fetchData(
       `/books/${reviewID}`,
       "PUT",
       { Authorization: `Bearer ${jwt}` },
@@ -40,7 +40,7 @@ export const useReview = (reviewID, jwt) => {
   };
 
   const deleteReview = async () => {
-    const res = await fetchdata(`/books/${reviewID}`, "DELETE", {
+    const res = await fetchData(`/books/${reviewID}`, "DELETE", {
       Authorization: `Bearer ${jwt}`,
     });
 

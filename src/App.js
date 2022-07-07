@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { SignUp } from "./components/Signup";
-import { Signin } from "./components/Signin";
-import { Books } from "./components/Books";
-import { Profile } from "./components/Profile";
-import { Newbook } from "./components/Newbook";
-import { Detail } from "./components/Detail";
-import { Edit } from "./components/Edit";
-import { Publicbooks } from "./components/Publicbooks";
-import { Header } from "./components/Header";
-import { Sample } from "./components/sampleSearchUserBooks";
-import { UserNameProvider } from "./context/UserNameContext";
-import { LoadingProvider } from "./context/Loading";
-import { useAuth } from "./context/AuthContext";
-import { RequireAuth } from "./components/RequireAuth";
-import { RequireSignout } from "./components/RequireSignout";
+import { SignUp } from "./features/components/Signup";
+import { Signin } from "./features/components/Signin";
+import { Books } from "./features/components/Books";
+import { Profile } from "./features/components/Profile";
+import { Newbook } from "./features/components/Newbook";
+import { Detail } from "./features/components/Detail";
+import { Edit } from "./features/components/Edit";
+import { Publicbooks } from "./features/components/Publicbooks";
+import { Header } from "./features/components/Header";
+import { Sample } from "./features/components/sampleSearchUserBooks";
+import { UserNameProvider } from "./features/providers/UserNameContext";
+import { LoadingProvider } from "./features/providers/Loading";
+import { useAuth } from "./providers/AuthContext";
+import { RequireAuth } from "./features/components/RequireAuth";
+import { RequireSignout } from "./features/components/RequireSignout";
 
 function App() {
   const { isAuth, setIsAuth } = useAuth();

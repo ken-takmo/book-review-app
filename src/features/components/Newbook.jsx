@@ -4,7 +4,7 @@ import { useFetch } from "../hooks/useFetch";
 export const Newbook = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
-  const { fetchdata, fetchRes } = useFetch();
+  const { fetchData, fetchRes } = useFetch();
 
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -19,7 +19,7 @@ export const Newbook = () => {
       review: review,
     };
 
-    const res = await fetchdata(
+    const res = await fetchData(
       "/books",
       "POST",
       { Authorization: `Bearer ${jwt}` },

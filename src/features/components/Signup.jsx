@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function SignUp() {
   const navigate = useNavigate();
-  const { fetchdata, fetchRes } = useFetch();
+  const { fetchData, fetchRes } = useFetch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +28,7 @@ export function SignUp() {
   };
 
   const handleSignup = async () => {
-    const res = await fetchdata("/users", "POST", undefined, body);
+    const res = await fetchData("/users", "POST", undefined, body);
     const result = await res.json();
 
     const successAction = () => {
