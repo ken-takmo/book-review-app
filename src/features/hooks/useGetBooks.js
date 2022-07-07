@@ -10,7 +10,7 @@ export const useGetBooks = (url, headers) => {
   useEffect(() => {
     const getBooks = async () => {
       setLoading(false);
-      const res = await fetchData(`/books${url}`, "GET", headers);
+      const res = await fetchData(url, "GET", headers);
       const result = await res.json();
       setResurt(result);
       setLoading(true);

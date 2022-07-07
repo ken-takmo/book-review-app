@@ -11,7 +11,7 @@ export const Books = () => {
   const [searchParams, setSearchParams] = useState(1);
   const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) - 1);
 
-  const results = useGetBooks(`?offset=${offset}`, {
+  const results = useGetBooks(`/books?offset=${offset}`, {
     Authorization: `Bearer ${jwt}`,
   });
 
