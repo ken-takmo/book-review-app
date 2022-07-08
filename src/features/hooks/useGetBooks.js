@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { LoadingContext } from "../providers/Loading";
-import { useFetch } from "./useFetch";
+import { useFetch } from "../../hooks/useFetch";
 
 export const useGetBooks = (url, headers) => {
   const [result, setResurt] = useState({});

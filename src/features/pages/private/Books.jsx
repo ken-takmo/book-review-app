@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useGetBooks } from "../hooks/useGetBooks";
-import { LoadingContext } from "../providers/Loading";
+import { useGetBooks } from "../../hooks/useGetBooks";
+import { LoadingContext } from "../../providers/Loading";
 export const Books = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();

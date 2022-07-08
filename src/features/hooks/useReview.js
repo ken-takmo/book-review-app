@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "./useFetch";
+import { useFetch } from "../../hooks/useFetch";
 
 export const useReview = (reviewID, jwt) => {
   const navigate = useNavigate();

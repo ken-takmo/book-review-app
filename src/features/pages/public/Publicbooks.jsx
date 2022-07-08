@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGetBooks } from "../hooks/useGetBooks";
-import { LoadingContext } from "../providers/Loading";
+import { useGetBooks } from "../../hooks/useGetBooks";
+import { LoadingContext } from "../../providers/Loading";
 
 export const Publicbooks = () => {
   const navigate = useNavigate();

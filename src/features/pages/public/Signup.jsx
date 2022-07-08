@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useState } from "react";
+import { useFetch } from "../../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
 
 export function SignUp() {

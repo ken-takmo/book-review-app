@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation, Link } from "react-router-dom";
-import { useFetch } from "../hooks/useFetch";
-import { useReview } from "../hooks/useReview";
+import { useFetch } from "../../../hooks/useFetch";
+import { useReview } from "../../hooks/useReview";
 
 export const Edit = () => {
   const jwt = localStorage.getItem("jwt");

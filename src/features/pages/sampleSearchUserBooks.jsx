@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 
 export const Sample = () => {
   const { fetchdata, fetchRes } = useFetch();

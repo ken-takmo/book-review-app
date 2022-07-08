@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useReview } from "../hooks/useReview";
+import { useReview } from "../../hooks/useReview";
 
 export const Detail = () => {
   const navigate = useNavigate();
