@@ -26,7 +26,8 @@ export const Header = () => {
           <div className="login-menus">
             <div className="userinfo">
               <div className="username">
-                ユーザーネーム: <span className="name">{userName}</span>
+                <i class="bi bi-person-circle"></i>
+                <span className="name">{userName}</span>
               </div>
               <span
                 className="material-symbols-outlined md-40"
@@ -36,15 +37,23 @@ export const Header = () => {
               </span>
             </div>
             <nav className="links">
-              <Link to="/profile" className="link">
-                ユーザー情報編集
-              </Link>
-              <Link to="/new" className="link">
-                レビュー投稿
-              </Link>
-              <Link to="/books" className="link">
-                書籍一覧
-              </Link>
+              <ul>
+                <li>
+                  <Link to="/profile" className="link">
+                    ユーザー情報編集
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/new" className="link">
+                    レビュー投稿
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/books" className="link">
+                    書籍一覧
+                  </Link>
+                </li>
+              </ul>
             </nav>
           </div>
         </div>
@@ -53,15 +62,35 @@ export const Header = () => {
           <h1 className="app-name">書籍レビューアプリ</h1>
           <div className="menus">
             <nav className="links">
-              <Link to="/signin" className="link">
-                ログイン
+              <ul>
+                <li>
+                  <Link to="/signin" className="link">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    ログイン
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup" className="link">
+                    <i class="bi bi-person-plus-fill"></i>
+                    登録
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" className="link">
+                    <i class="bi bi-book"></i>
+                    書籍一覧
+                  </Link>
+                </li>
+              </ul>
+              {/* <Link to="/signin" className="link">
+                <i class="bi bi-box-arrow-in-right"></i>ログイン
               </Link>
               <Link to="/signup" className="link">
                 登録
               </Link>
               <Link to="/" className="link">
                 書籍一覧
-              </Link>
+              </Link> */}
             </nav>
           </div>
         </div>
