@@ -546,6 +546,8 @@ hr {
   .menus {
     flex: 1;
     align-items: center;
+    width: 100%;
+    justify-content: center;
   }
 
   .login-menus * {
