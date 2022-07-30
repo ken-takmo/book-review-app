@@ -1,5 +1,5 @@
 {
-  "name": "react-router-practise",
+  "name": "book-review-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,7 +22,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://localhost:3000",
+  "homepage": "https://ken-takmo.github.io/book-review-app/",
   "eslintConfig": {
     "extends": [
       "react-app",
