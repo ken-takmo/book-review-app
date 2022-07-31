@@ -26,7 +26,7 @@ export const Header = () => {
           <div className="login-menus">
             <div className="userinfo">
               <div className="username">
-                <i class="bi bi-person-circle"></i>
+                <i className="bi bi-person-circle"></i>
                 <span className="name">{userName}</span>
               </div>
               <span
@@ -65,19 +65,19 @@ export const Header = () => {
               <ul>
                 <li>
                   <Link to="/signin" className="link">
-                    <i class="bi bi-box-arrow-in-right"></i>
+                    <i className="bi bi-box-arrow-in-right"></i>
                     ログイン
                   </Link>
                 </li>
                 <li>
                   <Link to="/signup" className="link">
-                    <i class="bi bi-person-plus-fill"></i>
+                    <i className="bi bi-person-plus-fill"></i>
                     登録
                   </Link>
                 </li>
                 <li>
                   <Link to="/" className="link">
-                    <i class="bi bi-book"></i>
+                    <i className="bi bi-book"></i>
                     書籍一覧
                   </Link>
                 </li>

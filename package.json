@@ -1,5 +1,5 @@
 {
-  "name": "book-review-app",
+  "name": "",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,7 +22,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://ken-takmo.github.io/book-review-app/",
+  "homepage": "https://localhost:3000/",
   "eslintConfig": {
     "extends": [
       "react-app",
