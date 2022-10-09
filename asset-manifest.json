@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.046d2654.js",
-    "index.html": "/index.html",
-    "main.046d2654.js.map": "/static/js/main.046d2654.js.map"
+    "main.js": "/book-review-app/static/js/main.046d2654.js",
+    "index.html": "/book-review-app/index.html",
+    "main.046d2654.js.map": "/book-review-app/static/js/main.046d2654.js.map"
   },
   "entrypoints": [
     "static/js/main.046d2654.js"
