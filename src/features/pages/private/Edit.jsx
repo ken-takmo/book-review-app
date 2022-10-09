@@ -15,6 +15,7 @@ export const Edit = () => {
   const [detailText, setDetailText] = useState(review.detail);
   const [reviewText, setReviewText] = useState(review.review);
 
+  console.log(review);
   useEffect(() => {
     setTitleText(review.title);
     setUrlText(review.url);
