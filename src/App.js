@@ -18,7 +18,6 @@ import { RequireSignout } from "./features/pages/private/RequireSignout";
 
 function App() {
   const { isAuth, setIsAuth } = useAuth();
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,9 +26,18 @@ function App() {
             <Header />
             {isAuth ? (
               <Routes>
-                <Route path="/" element={<RequireSignout />} />
-                <Route path="/signup" element={<RequireSignout />} />
-                <Route path="/signin" element={<RequireSignout />} />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/`}
+                  element={<RequireSignout />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/si`}
+                  element={<RequireSignout />}
+                />
+                <Route
+                  path="${process.env.PUBLIC_URL}/`}signin"
+                  element={<RequireSignout />}
+                />
                 <Route path="/books" element={<Books />} />
                 <Route path="/detail/:id" element={<Detail />} />
                 <Route path="/edit/:id" element={<Edit />} />
@@ -40,8 +48,14 @@ function App() {
             ) : (
               <Routes>
                 <Route path="/" element={<Publicbooks />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/signin" element={<Signin />} />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/signup`}
+                  element={<SignUp />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/signin`}
+                  element={<Signin />}
+                />
                 <Route path="/books" element={<RequireAuth />} />
                 <Route path="/detail/:id" element={<RequireAuth />} />
                 <Route path="/edit/:id" element={<RequireAuth />} />
