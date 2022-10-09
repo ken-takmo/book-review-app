@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.96782f2b.js",
-    "index.html": "/index.html",
-    "main.96782f2b.js.map": "/static/js/main.96782f2b.js.map"
+    "main.js": "/book-review-app/static/js/main.abea2e5b.js",
+    "index.html": "/book-review-app/index.html",
+    "main.abea2e5b.js.map": "/book-review-app/static/js/main.abea2e5b.js.map"
   },
   "entrypoints": [
-    "static/js/main.96782f2b.js"
+    "static/js/main.abea2e5b.js"
   ]
 }
