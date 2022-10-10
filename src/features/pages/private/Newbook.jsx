@@ -5,6 +5,7 @@ export const Newbook = () => {
   const jwt = localStorage.getItem("jwt");
   const navigate = useNavigate();
   const { fetchData, fetchRes } = useFetch();
+  const homeUrl = process.env.PUBLIC_URL;
 
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -29,7 +30,7 @@ export const Newbook = () => {
 
     const successAction = () => {
       alert("レビューが投稿されました");
-      navigate("/books");
+      navigate(`${homeUrl}/books`);
     };
 
     fetchRes(res, successAction, result);
@@ -84,7 +85,7 @@ export const Newbook = () => {
             <button
               className="prev-button"
               onClick={() => {
-                navigate("/books");
+                navigate(`${homeUrl}/books`);
               }}
             >
               戻る
@@ -93,7 +94,7 @@ export const Newbook = () => {
         </main>
       ) : (
         <main className="books-content">
-          <Link to="/signin">ログインしてください</Link>
+          <Link to={`${homeUrl}/signin`}>ログインしてください</Link>
         </main>
       )}
     </div>

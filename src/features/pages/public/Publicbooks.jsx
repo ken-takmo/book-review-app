@@ -10,7 +10,7 @@ export const Publicbooks = () => {
   const [params] = useSearchParams();
   const [searchNumber, setSearchNumber] = useState(1);
   const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) - 1);
-
+  const homeUrl = process.env.PUBLIC_URL;
   const results = useGetBooks(`/public/books?offset=${offset}`);
 
   const handleNextBooks = () => {
@@ -27,7 +27,7 @@ export const Publicbooks = () => {
   const handlePrevBooks = () => {
     if (0 < offset && offset <= 10) {
       setOffset(-1);
-      navigate("/");
+      navigate(`${homeUrl}/`);
       window.scrollTo(0, 0);
     } else if (offset === -1) {
       alert("最新のレビューです");
@@ -51,7 +51,7 @@ export const Publicbooks = () => {
 
   const requestLogin = () => {
     alert("ログイン後、レビューの詳細をご覧になれます");
-    navigate("/signin");
+    navigate(`${homeUrl}/signin`);
   };
 
   return (

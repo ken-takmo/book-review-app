@@ -9,7 +9,8 @@ export const Header = () => {
   const jwt = localStorage.getItem("jwt");
   const { userName } = useContext(UserNameContext);
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/signin";
+  const homeUrl = process.env.PUBLIC_URL;
+  const from = location.state?.from?.pathname || `${homeUrl}/signin`;
 
   const signout = () => {
     localStorage.removeItem("jwt");
@@ -64,19 +65,19 @@ export const Header = () => {
             <nav className="links">
               <ul>
                 <li>
-                  <Link to="/signin" className="link">
+                  <Link to={`${homeUrl}/signin`} className="link">
                     <i className="bi bi-box-arrow-in-right"></i>
                     ログイン
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signup" className="link">
+                  <Link to={`${homeUrl}/signup`} className="link">
                     <i className="bi bi-person-plus-fill"></i>
                     登録
                   </Link>
                 </li>
                 <li>
-                  <Link to="/" className="link">
+                  <Link to={`${homeUrl}/`} className="link">
                     <i className="bi bi-book"></i>
                     書籍一覧
                   </Link>

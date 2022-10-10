@@ -8,6 +8,7 @@ export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const homeUrl = process.env.PUBLIC_URL;
 
   const body = {
     name: name,
@@ -33,7 +34,7 @@ export function SignUp() {
 
     const successAction = () => {
       alert("登録されました");
-      navigate("/signin");
+      navigate(`${homeUrl}/signin`);
     };
 
     fetchRes(res, successAction, errorAction, result);
@@ -83,7 +84,7 @@ export function SignUp() {
             登録
           </button>
         </div>
-        <Link to="/signin" className="signin-link">
+        <Link to={`${homeUrl}/signin`} className="signin-link">
           ログイン画面へ
         </Link>
       </div>

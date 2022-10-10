@@ -10,6 +10,7 @@ export const Books = () => {
   const [params] = useSearchParams();
   const [searchParams, setSearchParams] = useState(1);
   const [offset, setOffset] = useState(Number(params.get(`offset`) ?? 0) - 1);
+  const homeUrl = process.env.PUBLIC_URL;
 
   const results = useGetBooks(`/books?offset=${offset}`, {
     Authorization: `Bearer ${jwt}`,
@@ -29,7 +30,7 @@ export const Books = () => {
   const handlePrevBooks = () => {
     if (0 < offset && offset <= 10) {
       setOffset(-1);
-      navigate("/books");
+      navigate(`${homeUrl}/books`);
       window.scrollTo(0, 0);
     } else if (offset <= 0) {
       alert("最新のレビューです");
@@ -78,7 +79,7 @@ export const Books = () => {
                   <button
                     className="review-footers"
                     onClick={() => {
-                      navigate(`/detail/${result.id}`);
+                      navigate(`${homeUrl}/detail/${result.id}`);
                     }}
                   >
                     詳しく
@@ -87,7 +88,7 @@ export const Books = () => {
                     <button
                       className="review-footers"
                       onClick={() => {
-                        navigate(`/edit/${result.id}`);
+                        navigate(`${homeUrl}/edit/${result.id}`);
                       }}
                     >
                       編集
@@ -129,7 +130,7 @@ export const Books = () => {
         </div>
       ) : (
         <div className="books-content">
-          <Link to="/signin">ログインしてください</Link>
+          <Link to={`${homeUrl}/signin`}>ログインしてください</Link>
         </div>
       )}
     </main>

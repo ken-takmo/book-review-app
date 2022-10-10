@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 
 export const useReview = (reviewID, jwt) => {
+  const homeUrl = process.env.PUBLIC_URL;
   const navigate = useNavigate();
   const { fetchData, fetchRes } = useFetch();
   const [review, setReview] = useState({
@@ -34,7 +35,7 @@ export const useReview = (reviewID, jwt) => {
 
     const updateSuccessAction = () => {
       alert("レビュー内容が変更されました");
-      navigate("/books");
+      navigate(`${homeUrl}/books`);
     };
     fetchRes(res, updateSuccessAction, result);
   };
@@ -46,7 +47,7 @@ export const useReview = (reviewID, jwt) => {
 
     const deleteSuccessAction = () => {
       alert("この投稿が削除されました");
-      navigate("/books");
+      navigate(`${homeUrl}/books`);
     };
 
     fetchRes(res, deleteSuccessAction);

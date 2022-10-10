@@ -7,6 +7,7 @@ export const Profile = () => {
   const navigate = useNavigate();
   const { userName, setUserName } = useContext(UserNameContext);
   const { editProfile } = useUserName();
+  const homeUrl = process.env.PUBLIC_URL;
 
   const [newName, setNewName] = useState("");
 
@@ -44,7 +45,7 @@ export const Profile = () => {
             <button
               className="prev-button"
               onClick={() => {
-                navigate("/books");
+                navigate(`${homeUrl}/books`);
               }}
             >
               戻る
@@ -53,7 +54,7 @@ export const Profile = () => {
         </main>
       ) : (
         <main className="books-content">
-          <Link to="/signin">ログインしてください</Link>
+          <Link to={`${homeUrl}/signin`}>ログインしてください</Link>
         </main>
       )}
     </div>

@@ -9,6 +9,7 @@ export const Detail = () => {
   const jwt = localStorage.getItem("jwt");
   const [content, setContent] = useState("detail");
   const { review } = useReview(reviewID, jwt);
+  const homeUrl = process.env.PUBLIC_URL;
 
   function handleContentChange(contentType) {
     setContent(contentType);
@@ -74,7 +75,7 @@ export const Detail = () => {
         </div>
       ) : (
         <div>
-          <Link to="/signin">ログインしてください</Link>
+          <Link to={`${homeUrl}/signin`}>ログインしてください</Link>
         </div>
       )}
     </main>

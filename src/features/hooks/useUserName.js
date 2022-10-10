@@ -6,6 +6,7 @@ export const useUserName = (jwt) => {
   const { fetchData, fetchRes } = useFetch();
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const homeUrl = process.env.PUBLIC_URL;
 
   useEffect(() => {
     const getUserName = async () => {
@@ -31,7 +32,7 @@ export const useUserName = (jwt) => {
 
     const successAction = () => {
       alert(`ユーザー名が${result.name}に変更されました`);
-      navigate("/books");
+      navigate(`${homeUrl}/books`);
     };
 
     fetchRes(res, successAction, result);

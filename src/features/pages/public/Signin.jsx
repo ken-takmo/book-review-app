@@ -10,7 +10,8 @@ export function Signin() {
   const [emailText, setEmailText] = useState("");
   const [passwordText, setPasswordText] = useState("");
   const { fetchData, fetchRes } = useFetch();
-  const from = location.state?.from?.pathname || "/books";
+  const homeUrl = process.env.PUBLIC_URL;
+  const from = location.state?.from?.pathname || `${homeUrl}/books`;
 
   const body = {
     email: emailText,
@@ -68,7 +69,7 @@ export function Signin() {
             ログイン
           </button>
         </div>
-        <Link to="/signup" className="signup-link">
+        <Link to={`${homeUrl}/signup`} className="signup-link">
           登録画面へ
         </Link>
       </div>

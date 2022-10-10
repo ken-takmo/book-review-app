@@ -23,7 +23,7 @@
     "predeploy": "npm run build",
     "deploy": "npm run build && gh-pages -d build"
   },
-  "homepage": "https://ken-takmo.github.io/",
+  "homepage": "https://ken-takmo.github.io/book-review-app",
   "eslintConfig": {
     "extends": [
       "react-app",

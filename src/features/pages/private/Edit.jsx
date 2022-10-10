@@ -9,6 +9,7 @@ export const Edit = () => {
   const navigate = useNavigate();
   const reviewID = params.id;
   const { review, updateReview, deleteReview } = useReview(reviewID, jwt);
+  const homeUrl = process.env.PUBLIC_URL;
 
   const [titleText, setTitleText] = useState(review.title);
   const [urlText, setUrlText] = useState(review.url);
@@ -102,7 +103,7 @@ export const Edit = () => {
         </main>
       ) : (
         <main className="books-content">
-          <Link to="/signin">ログインしてください</Link>
+          <Link to={`${homeUrl}/signin`}>ログインしてください</Link>
         </main>
       )}
     </div>
