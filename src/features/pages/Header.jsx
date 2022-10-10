@@ -40,17 +40,17 @@ export const Header = () => {
             <nav className="links">
               <ul>
                 <li>
-                  <Link to="/profile" className="link">
+                  <Link to={`${homeUrl}/profile`} className="link">
                     ユーザー情報編集
                   </Link>
                 </li>
                 <li>
-                  <Link to="/new" className="link">
+                  <Link to={`${homeUrl}/new`} className="link">
                     レビュー投稿
                   </Link>
                 </li>
                 <li>
-                  <Link to="/books" className="link">
+                  <Link to={`${homeUrl}/books`} className="link">
                     書籍一覧
                   </Link>
                 </li>
